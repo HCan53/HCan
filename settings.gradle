@@ -1,4 +1,4 @@
 include ':utils'
 include ':http'
 include ':app'
-rootProject.name='DownloadApk'
+rootProject.name='HCan'
