@@ -1,8 +1,9 @@
 package com.hcan53.android.http.utils;
 
-import android.content.Context;
 import android.os.Environment;
 import android.text.TextUtils;
+
+import com.hcan53.android.http.HttpUtils;
 
 import java.io.File;
 
@@ -39,17 +40,17 @@ public class SDCardUtils {
      *             {@link Environment#DIRECTORY_MOVIES}.or 自定义文件夹名称
      * @return 缓存目录文件夹 或 null（无SD卡或SD卡挂载失败）
      */
-    public static File getCacheDirectory(Context context, String type) {
+    public static File getCacheDirectory(String type) {
         File appCacheDir = null;
         if (isSDCardEnable()) {
             if (TextUtils.isEmpty(type)) {
-                appCacheDir = context.getExternalCacheDir();
+                appCacheDir = HttpUtils.getApp().getExternalCacheDir();
             } else {
-                appCacheDir = context.getExternalFilesDir(type);
+                appCacheDir = HttpUtils.getApp().getExternalFilesDir(type);
             }
             if (appCacheDir == null) {// 有些手机需要通过自定义目录
                 appCacheDir = new File(Environment.getExternalStorageDirectory(),
-                        "Android/data/" + context.getPackageName() + "/cache/" + type);
+                        "Android/data/" + HttpUtils.getApp().getPackageName() + "/cache/" + type);
             }
         }
         return appCacheDir;
@@ -60,8 +61,8 @@ public class SDCardUtils {
      *
      * @return null：不存在SD卡
      */
-    public static String getCachePath(Context context, String type) {
-        File cacheDirectory = getCacheDirectory(context, type);
+    public static String getCachePath(String type) {
+        File cacheDirectory = getCacheDirectory(type);
         return cacheDirectory != null ? cacheDirectory.getPath() : "";
     }
 

@@ -1,6 +1,11 @@
 package com.hcan53.android.http;
 
 
+import android.annotation.SuppressLint;
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+
 import com.hcan53.android.http.request.BaseRequest;
 import com.hcan53.android.http.request.DownloadListener;
 import com.hcan53.android.http.request.DownloadRequest;
@@ -9,12 +14,16 @@ import com.hcan53.android.http.request.PostRequest;
 import com.hcan53.android.http.request.UploadRequest;
 import com.hcan53.android.http.utils.StringUtils;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * <p>Created by Fenghj on 2018/6/4.</p>
  */
 public class HttpUtils {
     private String mBaseUrl = "http://jmpotal.hanweb.com/jmp/"; //全局BaseUrl
     private volatile static HttpUtils singleton = null;
+    @SuppressLint("StaticFieldLeak")
+    private static Application sApplication;
 
     private HttpUtils() {
 
@@ -29,6 +38,51 @@ public class HttpUtils {
             }
         }
         return singleton;
+    }
+
+    /**
+     * Init utils.
+     * <p>Init it in the class of Application.</p>
+     *
+     * @param app application
+     */
+    public static void init(@NonNull final Application app) {
+        if (sApplication == null) {
+            HttpUtils.sApplication = app;
+        }
+    }
+
+    /**
+     * 获取ApplicationContext
+     *
+     * @return ApplicationContext
+     */
+    public static Application getApp() {
+        if (sApplication != null) {
+            return sApplication;
+        }
+
+        try {
+            @SuppressLint("PrivateApi")
+            Class<?> activityThread = Class.forName("android.app.ActivityThread");
+            Object at = activityThread.getMethod("currentActivityThread").invoke(null);
+            Object app = activityThread.getMethod("getApplication").invoke(at);
+            if (app == null) {
+                throw new NullPointerException("u should init first");
+            }
+            init((Application) app);
+            return sApplication;
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        throw new NullPointerException("u should init first");
     }
 
     /**

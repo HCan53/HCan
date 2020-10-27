@@ -33,14 +33,14 @@ public class DownloadRequest extends BaseRequest {
     private String fileName;
     protected Map<String, String> params = new LinkedHashMap<>();//请求参数
 
-    public DownloadRequest(Context context, String url) {
-        this(context, url, null);
+    public DownloadRequest(String url) {
+        this(url, null);
     }
 
-    public DownloadRequest(Context context, String url, DownloadListener listener) {
+    public DownloadRequest( String url, DownloadListener listener) {
         super(url, listener);
         downloadListener = listener;
-        dirName = SDCardUtils.getCachePath(context, Environment.DIRECTORY_DOWNLOADS);
+        dirName = SDCardUtils.getCachePath(Environment.DIRECTORY_DOWNLOADS);
         fileName = "download_file.tmp";
     }
 

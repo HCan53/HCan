@@ -1,16 +1,17 @@
-apply plugin: 'com.android.library'
-
+plugins {
+    id 'com.android.library'
+}
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.0"
 
     defaultConfig {
-        applicationId "com.hcan53.android.http"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -28,8 +29,7 @@ android {
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.1.0'
-    implementation project(path: ':app')
+    implementation 'com.google.android.material:material:1.2.1'
     testImplementation 'junit:junit:4.+'
 
     //rxjava2
