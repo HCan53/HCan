@@ -26,7 +26,6 @@ public class DownLoadService extends JobIntentService {
     static final int JOB_ID = 111111;
     static final String DOWNLOADURL = "DOWNLOADURL";
     private NotificationUtils notificationUtils;
-    private String fileUri;
     private String apkName = "productAndroid.apk";
 
     /**
@@ -44,7 +43,7 @@ public class DownLoadService extends JobIntentService {
             String url = intent.getStringExtra(DOWNLOADURL);
             notificationUtils = new NotificationUtils(DownLoadService.this);
             //下载文件存放路径
-            fileUri = SDCardUtils.getCacheDirectory(Environment.DIRECTORY_DOWNLOADS).getPath() + "/" + apkName;
+            SDCardUtils.getCacheDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
             notificationUtils.sendNotificationProgress("更新提示", "客户端版本更新", 0, null);
             handleUpdate(url);
         }
