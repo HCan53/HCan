@@ -15,8 +15,8 @@ import java.util.Formatter;
 import java.util.concurrent.ExecutorService;
 
 /**
+ * Created by HC on 2018/12/14.
  * Log相关工具类
- * <p>Created by Fenghj on 2018/4/28.</p>
  */
 public final class JLog {
 

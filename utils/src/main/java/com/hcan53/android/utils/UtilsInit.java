@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import java.lang.reflect.InvocationTargetException;
 
 /**
+ * Created by HC on 2018/12/14.
  * Utils初始化类, getApp() 可获取 ApplicationContext 对象.
- * <br>Created by Fenghj on 2017/7/1.
  */
 
 public class UtilsInit {

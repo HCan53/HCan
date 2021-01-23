@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hcan53.android.views.roundwidget.JmRoundTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet_item_tv"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:gravity="center"
+    android:textColor="#007aff"
+    android:textSize="16sp"
+    app:jm_background_color_normal="#f8f8f8"
+    app:jm_background_color_pressed="#EAEAEA"
+    app:jm_radius="5dp"/>

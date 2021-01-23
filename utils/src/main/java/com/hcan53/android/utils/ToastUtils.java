@@ -22,8 +22,8 @@ import androidx.annotation.StringRes;
 
 
 /**
+ * Created by HC on 2018/12/14.
  * 吐司相关工具类
- * <p>Created by Fenghj on 2018/5/31.</p>
  */
 
 public class ToastUtils {

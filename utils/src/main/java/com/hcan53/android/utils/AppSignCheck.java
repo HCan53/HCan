@@ -14,6 +14,7 @@ import java.security.cert.X509Certificate;
 
 /**
  * Created by HC on 2018/12/14.
+ * 检查签名文件是否合法
  */
 public class AppSignCheck {
 

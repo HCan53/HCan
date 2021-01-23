@@ -12,8 +12,8 @@ import androidx.core.content.FileProvider;
 import java.io.File;
 
 /**
+ * Created by HC on 2018/12/14.
  * 意图相关工具类
- * <p>Created by Fenghj on 2018/5/30.</p>
  */
 
 public class IntentUtils {

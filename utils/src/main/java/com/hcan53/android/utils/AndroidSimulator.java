@@ -8,12 +8,14 @@ import android.os.Build;
 import android.text.TextUtils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 
 /**
  * Created by HC on 2018/12/14.
+ * 判断当前运行环境是否是模拟器
  */
 public class AndroidSimulator {
     /*
@@ -110,4 +112,24 @@ public class AndroidSimulator {
         }
         return result;
     }
+
+    /*
+     *作者:赵星海
+     *时间:2019/2/21 17:50
+     *用途:检测模拟器的特有文件
+     *返回:true 为模拟器
+     */
+    private static String[] known_pipes = {"/dev/socket/qemud", "/dev/qemu_pipe"};
+
+    public static boolean checkPipes() {
+        for (int i = 0; i < known_pipes.length; i++) {
+            String pipes = known_pipes[i];
+            File qemu_socket = new File(pipes);
+            if (qemu_socket.exists()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

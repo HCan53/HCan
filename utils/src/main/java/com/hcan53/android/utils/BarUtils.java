@@ -19,8 +19,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
+ * Created by HC on 2018/12/14.
  * 栏相关工具类
- * <p>Created by Fenghj on 2018/5/28.</p>
  */
 
 public class BarUtils {

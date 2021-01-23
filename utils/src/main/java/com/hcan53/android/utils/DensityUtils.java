@@ -3,9 +3,8 @@ package com.hcan53.android.utils;
 import android.content.Context;
 
 /**
+ * Created by HC on 2018/12/14.
  * 尺寸相关工具类<br>
- *
- * Created by Fenghj on 2018/05/26.
  */
 public final class DensityUtils {
 

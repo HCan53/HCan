@@ -6,9 +6,8 @@ import android.text.TextUtils;
 import java.io.File;
 
 /**
+ * Created by HC on 2018/12/14.
  * SD卡相关工具类
- *
- * <p>Created by Fenghj on 2018/5/30.</p>
  */
 
 public class SDCardUtils {

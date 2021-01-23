@@ -1,8 +1,8 @@
 package com.hcan53.android.utils;
 
 /**
+ * Created by HC on 2018/12/14.
  * 判断双击工具类
- * <p>Created by Fenghj on 2018/5/31.</p>
  */
 
 public class DoubleClickUtils {

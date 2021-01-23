@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Random;
 
 /**
- * @author jiaru
+ * Created by HC on 2018/12/14.
  * 这个类用来生成验证码
  */
 public class CaptchaUtils {

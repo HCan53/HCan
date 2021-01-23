@@ -8,13 +8,14 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 /**
+ * Created by HC on 2018/12/14.
  * 软键盘相关工具类
- * <p>Created by Fenghj on 2018/5/28.</p>
  */
 public class InputMethodUtils {
     private InputMethodUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
+
     /**
      * 动态显示软键盘
      *
@@ -41,6 +42,7 @@ public class InputMethodUtils {
         if (imm == null) return;
         imm.showSoftInput(view, InputMethodManager.SHOW_FORCED);
     }
+
     /**
      * 动态隐藏软键盘
      */
@@ -68,8 +70,8 @@ public class InputMethodUtils {
      * <p>重写dispatchTouchEvent方法<p/>
      *
      * @param context 上下文
-     * @param v edittext
-     * @param event 重写dispatchTouchEvent方法中的event
+     * @param v       edittext
+     * @param event   重写dispatchTouchEvent方法中的event
      */
     public static void touchHideSoftInput(Context context, View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {

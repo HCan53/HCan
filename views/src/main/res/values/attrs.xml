@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- TopBar -->
+    <declare-styleable name="JmTopBar">
+        <attr name="jm_title" format="reference|string"/>
+        <attr name="jm_titleColor" format="color"/>
+        <attr name="jm_titleSize" format="dimension"/>
+        <attr name="jm_leftImage" format="reference"/>
+        <attr name="jm_rightImage" format="reference"/>
+        <attr name="jm_leftView_padding" format="dimension"/>
+        <attr name="jm_leftView_paddingLeft" format="dimension"/>
+        <attr name="jm_leftView_paddingTop" format="dimension"/>
+        <attr name="jm_leftView_paddingRight" format="dimension"/>
+        <attr name="jm_leftView_paddingBottom" format="dimension"/>
+        <attr name="jm_rightView_padding" format="dimension"/>
+        <attr name="jm_rightView_paddingLeft" format="dimension"/>
+        <attr name="jm_rightView_paddingTop" format="dimension"/>
+        <attr name="jm_rightView_paddingRight" format="dimension"/>
+        <attr name="jm_rightView_paddingBottom" format="dimension"/>
+        <attr name="jm_is_dark" format="boolean"/>
+        <attr name="jm_hasLine" format="boolean"/>
+        <attr name="jm_lineColor" format="color"/>
+        <attr name="jm_lineHeight" format="dimension"/>
+    </declare-styleable>
+
+    <!-- BaseEditView -->
+    <declare-styleable name="JmEditText">
+        <attr name="jm_left_icon" format="reference" />
+        <attr name="jm_left_width" format="dimension" />
+        <attr name="jm_left_height" format="dimension" />
+        <attr name="jm_delete_icon" format="reference" />
+        <attr name="jm_delete_width" format="dimension" />
+        <attr name="jm_delete_height" format="dimension" />
+        <attr name="jm_hasDelete" format="boolean"/>
+        <attr name="android:background" format="color"/>
+        <attr name="jm_strokeWidth" format="dimension"/>
+        <attr name="jm_left_strokeWidth" format="dimension"/>
+        <attr name="jm_top_strokeWidth" format="dimension"/>
+        <attr name="jm_right_strokeWidth" format="dimension"/>
+        <attr name="jm_bottom_strokeWidth" format="dimension"/>
+        <attr name="jm_strokeColor" format="color"/>
+        <attr name="jm_cornerRadius" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="JmRadiusImageView">
+        <attr name="jm_border_width" format="dimension"/>
+        <attr name="jm_border_color" format="dimension"/>
+        <attr name="jm_selected_mask_color" format="color"/>
+        <attr name="jm_selected_border_color" format="color"/>
+        <attr name="jm_selected_border_width" format="dimension"/>
+        <attr name="jm_corner_radius" format="dimension"/>
+        <attr name="jm_is_oval" format="boolean"/>
+        <attr name="jm_is_circle" format="boolean"/>
+        <attr name="jm_is_touch_select_mode_enabled" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="JmRoundView">
+        <attr name="jm_background_color_normal" format="color"/>
+        <attr name="jm_background_color_pressed" format="color"/>
+        <attr name="jm_borderColor" format="color"/>
+        <attr name="jm_borderWidth" format="dimension"/>
+        <attr name="jm_radius" format="dimension"/>
+        <attr name="jm_radiusTopLeft" format="dimension"/>
+        <attr name="jm_radiusTopRight" format="dimension"/>
+        <attr name="jm_radiusBottomLeft" format="dimension"/>
+        <attr name="jm_radiusBottomRight" format="dimension"/>
+    </declare-styleable>
+
+    <!--************ LoadingView ***********-->
+    <declare-styleable name="JmLoadingView">
+        <attr name="loading_view_size" format="dimension"/>
+        <attr name="android:color"/>
+    </declare-styleable>
+
+    <!--************ StatusView ***********-->
+    <declare-styleable name="JmStatusView">
+        <attr name="jm_loadingView" format="reference"/>
+        <attr name="jm_emptyView" format="reference"/>
+        <attr name="jm_errorView" format="reference"/>
+        <attr name="jm_noNetworkView" format="reference"/>
+    </declare-styleable>
+</resources>

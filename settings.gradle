@@ -1,3 +1,5 @@
+include ':permissions'
+include ':views'
 include ':utils'
 include ':http'
 include ':app'

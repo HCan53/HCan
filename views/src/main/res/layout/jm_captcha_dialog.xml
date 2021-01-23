@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hcan53.android.views.roundwidget.JmRoundLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:jm_background_color_normal="#f8f8f8"
+    app:jm_radius="3dp">
+
+    <TextView
+        android:id="@+id/dialog_tilte_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="请输入图片验证码"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/jm_alert_title_size" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/jm_captcha_dialog_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/captcha_et"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="看不清楚？点击换一张"
+            android:paddingLeft="5dp"
+            android:paddingTop="8dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="8dp"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/captcha_iv"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:contentDescription="@null" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/dialog_horizontal_divier_view"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#d7d7db" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dialog_negative_btn"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/jm_dialog_button_right_selector"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="#999999"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/dialog_vertical_divier_view"
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="#d7d7db" />
+
+        <Button
+            android:id="@+id/dialog_positive_btn"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/jm_dialog_button_left_selector"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="#007aff"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</com.hcan53.android.views.roundwidget.JmRoundLinearLayout>

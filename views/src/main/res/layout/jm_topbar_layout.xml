@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/topbar_left_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:contentDescription="@null"/>
+
+    <TextView
+        android:id="@+id/topbar_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/topbar_left_iv"
+        android:layout_toLeftOf="@+id/topbar_right_iv"
+        android:layout_toRightOf="@+id/topbar_left_iv"
+        android:layout_toStartOf="@+id/topbar_right_iv"
+        android:gravity="center"/>
+
+    <ImageView
+        android:id="@+id/topbar_right_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:contentDescription="@null"/>
+
+</merge>

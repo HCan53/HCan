@@ -6,8 +6,8 @@ import android.text.TextUtils;
 import java.io.File;
 
 /**
+ * Created by HC on 2018/12/14.
  * App相关工具类
- * <p>Created by Fenghj on 2018/05/26.</p>
  */
 
 public class AppUtils {
@@ -42,7 +42,7 @@ public class AppUtils {
     public static void launchApp(String packageName) {
         if (TextUtils.isEmpty(packageName)) return;
         Intent intent = IntentUtils.getLaunchAppIntent(packageName);
-        if(intent == null) return;
+        if (intent == null) return;
         UtilsInit.getApp().startActivity(intent);
     }
 

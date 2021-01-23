@@ -3,8 +3,8 @@ package com.hcan53.android.utils;
 import android.os.Build;
 
 /**
+ * Created by HC on 2018/12/14.
  * 设备相关工具类
- * <p>Created by Fenghj on 2018/05/26.</p>
  */
 
 public class DeviceUtils {

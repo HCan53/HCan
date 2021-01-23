@@ -12,8 +12,8 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 
 /**
+ * Created by HC on 2018/12/14.
  * 屏幕相关工具类<br/>
- * <p>Created by Fenghj on 2018/5/29.</p>
  */
 
 public class ScreenUtils {

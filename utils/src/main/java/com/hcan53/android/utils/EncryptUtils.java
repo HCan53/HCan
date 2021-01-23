@@ -10,8 +10,8 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
+ * Created by HC on 2018/12/14.
  * 加密解密相关的工具类
- * <p>Created by Fenghj on 2018/5/29.</p>
  */
 
 public class EncryptUtils {
@@ -40,9 +40,6 @@ public class EncryptUtils {
         return hashTemplate(data, "MD5");
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // AES加密相关
-    ///////////////////////////////////////////////////////////////////////////
     /**
      * AES转变
      * <p>法算法名称/加密模式/填充方式</p>

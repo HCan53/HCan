@@ -1,9 +1,11 @@
 package com.hcan53.android.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
 import androidx.annotation.RequiresPermission;
@@ -16,15 +18,17 @@ import java.util.Enumeration;
 import static android.Manifest.permission.INTERNET;
 
 /**
+ * Created by HC on 2018/12/14.
  * 网络相关工具类
- * <p>Created by Fenghj on 2018/5/30.<p/>
  */
 
 public class NetworkUtils {
     public static final String NETWORK_WIFI = "Wi-Fi";
+    public static final String NETWORK_5G = "5g";
     public static final String NETWORK_4G = "4g";
     public static final String NETWORK_3G = "3g";
     public static final String NETWORK_2G = "2g";
+    public static final String NETWORK_MOBILE = "mobile";
     public static final String NETWORK_UNKNOWN = "unknown";
     public static final String NETWORK_NONE = "none";
 
@@ -73,6 +77,7 @@ public class NetworkUtils {
      * @return 网络类型
      * <ul>
      * <li>{@link #NETWORK_WIFI   }</li>
+     * <li>{@link #NETWORK_5G     }</li>
      * <li>{@link #NETWORK_4G     }</li>
      * <li>{@link #NETWORK_3G     }</li>
      * <li>{@link #NETWORK_2G     }</li>
@@ -81,35 +86,67 @@ public class NetworkUtils {
      * </ul>
      */
     public static String getNetworkType() {
-        ConnectivityManager cm = (ConnectivityManager) UtilsInit.getApp()
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (cm == null) return NETWORK_NONE;
-        NetworkInfo info = cm.getActiveNetworkInfo();
-        if (info != null) {
-            String type = info.getTypeName();
-            if (type.toLowerCase().equals("wifi")) {
-                return NETWORK_WIFI;
-            } else {
-                if (type.toLowerCase().equals("mobile")) {
-                    type = info.getSubtypeName();
-                    if (type.toLowerCase().equals("gsm") || type.toLowerCase().equals("gprs")
-                            || type.toLowerCase().equals("edge")) {
-                        return NETWORK_2G;
-                    } else if (type.toLowerCase().startsWith("cdma") || type.toLowerCase().equals("umts")
-                            || type.toLowerCase().equals("1xrtt") || type.toLowerCase().equals("ehrpd")
-                            || type.toLowerCase().equals("hsupa") || type.toLowerCase().equals("hsdpa")
-                            || type.toLowerCase().equals("hspa")) {
-                        return NETWORK_3G;
-                    } else if (type.toLowerCase().equals("lte") || type.toLowerCase().equals("umb")
-                            || type.toLowerCase().equals("hspa+")) {
-                        return NETWORK_4G;
-                    }
-                }
-                return NETWORK_UNKNOWN;
-            }
-        } else {
+        //获取系统的网络服务
+        ConnectivityManager connManager = (ConnectivityManager) UtilsInit.getApp().getSystemService(Context.CONNECTIVITY_SERVICE);
+        //如果当前没有网络
+        if (null == connManager)
+            return NETWORK_NONE;
+        //获取当前网络类型，如果为空，返回无网络
+        @SuppressLint("MissingPermission") NetworkInfo activeNetInfo = connManager.getActiveNetworkInfo();
+        if (activeNetInfo == null || !activeNetInfo.isAvailable()) {
             return NETWORK_NONE;
         }
+        // 判断是不是连接的是不是wifi
+        @SuppressLint("MissingPermission") NetworkInfo wifiInfo = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (null != wifiInfo) {
+            NetworkInfo.State state = wifiInfo.getState();
+            if (null != state)
+                if (state == NetworkInfo.State.CONNECTED || state == NetworkInfo.State.CONNECTING) {
+                    return NETWORK_WIFI;
+                }
+        }
+        // 如果不是wifi，则判断当前连接的是运营商的哪种网络2g、3g、4g等
+        @SuppressLint("MissingPermission") NetworkInfo networkInfo = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (null != networkInfo) {
+            NetworkInfo.State state = networkInfo.getState();
+            String strSubTypeName = networkInfo.getSubtypeName();
+            if (null != state)
+                if (state == NetworkInfo.State.CONNECTED || state == NetworkInfo.State.CONNECTING) {
+                    switch (activeNetInfo.getSubtype()) {
+                        //如果是2g类型
+                        case TelephonyManager.NETWORK_TYPE_GPRS: // 联通2g
+                        case TelephonyManager.NETWORK_TYPE_CDMA: // 电信2g
+                        case TelephonyManager.NETWORK_TYPE_EDGE: // 移动2g
+                        case TelephonyManager.NETWORK_TYPE_1xRTT:
+                        case TelephonyManager.NETWORK_TYPE_IDEN:
+                            return NETWORK_2G;
+                        //如果是3g类型
+                        case TelephonyManager.NETWORK_TYPE_EVDO_A: // 电信3g
+                        case TelephonyManager.NETWORK_TYPE_UMTS:
+                        case TelephonyManager.NETWORK_TYPE_EVDO_0:
+                        case TelephonyManager.NETWORK_TYPE_HSDPA:
+                        case TelephonyManager.NETWORK_TYPE_HSUPA:
+                        case TelephonyManager.NETWORK_TYPE_HSPA:
+                        case TelephonyManager.NETWORK_TYPE_EVDO_B:
+                        case TelephonyManager.NETWORK_TYPE_EHRPD:
+                        case TelephonyManager.NETWORK_TYPE_HSPAP:
+                            return NETWORK_3G;
+                        //如果是4g类型
+                        case TelephonyManager.NETWORK_TYPE_LTE:
+                            return NETWORK_4G;
+                        case TelephonyManager.NETWORK_TYPE_NR: //对应的20 只有依赖为android 10.0才有此属性
+                            return NETWORK_5G;
+                        default:
+                            //中国移动 联通 电信 三种3G制式
+                            if (strSubTypeName.equalsIgnoreCase("TD-SCDMA") || strSubTypeName.equalsIgnoreCase("WCDMA") || strSubTypeName.equalsIgnoreCase("CDMA2000")) {
+                                return NETWORK_3G;
+                            } else {
+                                return NETWORK_MOBILE;
+                            }
+                    }
+                }
+        }
+        return NETWORK_UNKNOWN;
     }
 
     /**

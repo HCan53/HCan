@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2019/1/16.
+ * Created by HC on 2018/12/14.
+ * 链接处理
  */
 
 public class UrlUtil {

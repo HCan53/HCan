@@ -9,9 +9,8 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
+ * Created by HC on 2018/12/14.
  * 时间相关工具类
- *
- * <p>Created by Fenghj on 2018/05/28.<p/>
  */
 @SuppressLint("SimpleDateFormat")
 public class TimeUtils {

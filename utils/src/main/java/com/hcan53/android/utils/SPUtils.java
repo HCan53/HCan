@@ -12,9 +12,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * Created by HC on 2018/12/14.
  * SharedPreferences相关工具类
- *
- * <p>Created by Fenghj on 2018/5/31.<p/>
  */
 public class SPUtils {
     private static SPUtils sSharedPreferencesUtils;

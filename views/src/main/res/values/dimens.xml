@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="offset_64">64dp</dimen>
+
+    <!--标题文字高度-->
+    <dimen name="jm_alert_title_height">60dp</dimen>
+    <dimen name="jm_alert_title_size">20sp</dimen>
+    <dimen name="jm_alert_msg_size">15sp</dimen>
+    <!--消息距离底部间距-->
+    <dimen name="jm_alert_msg_margin_bottom">25dp</dimen>
+</resources>

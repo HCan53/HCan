@@ -4,9 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * Created by HC on 2018/12/14.
  * 字符串相关工具类
- * <p>
- * <p>Created by Fenghj on 2018/5/30.</p>
  */
 
 public class StringUtils {

@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
+ * Created by HC on 2018/12/14.
  * 图片Bitmap相关工具类
- * <p>Created by Fenghj on 2018/5/29.</p>
  */
 
 public class BitmapUtils {

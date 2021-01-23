@@ -1,6 +1,5 @@
 package com.hcan53.android.http.request;
 
-import android.content.Context;
 import android.os.Environment;
 import android.text.TextUtils;
 

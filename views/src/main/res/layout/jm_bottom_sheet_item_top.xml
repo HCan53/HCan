@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <com.hcan53.android.views.roundwidget.JmRoundTextView
+        android:id="@+id/bottom_sheet_item_tv"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        app:jm_background_color_normal="#f8f8f8"
+        app:jm_background_color_pressed="#EAEAEA"
+        app:jm_radiusTopLeft="5dp"
+        app:jm_radiusTopRight="5dp"
+        android:textSize="16sp"
+        android:textColor="#007aff"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#D7D7DB"/>
+</LinearLayout>
