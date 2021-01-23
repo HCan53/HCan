@@ -1,5 +1,6 @@
 package com.hcan53.android.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -51,6 +52,7 @@ public class AppSignCheck {
      *
      * @return
      */
+    @SuppressLint("PackageManagerGetSignatures")
     public String getCertificateSHA1Fingerprint() {
         //获取包管理器
         PackageManager pm = context.getPackageManager();

@@ -1,5 +1,6 @@
 package com.hcan53.android.utils;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
@@ -158,6 +159,7 @@ public class IntentUtils {
      *
      * @param file 拍照保存图片的文件
      */
+    @SuppressLint("QueryPermissionsNeeded")
     public static Intent getCameraIntent(File file) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (intent.resolveActivity(UtilsInit.getApp().getPackageManager()) != null) {

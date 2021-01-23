@@ -292,7 +292,7 @@ public class ToastUtils {
                         new PorterDuffColorFilter(sBgColor, PorterDuff.Mode.SRC_IN)
                 );
             } else {
-                toastView.setBackground(new ColorDrawable(sBgColor));
+                toastView.setBackgroundDrawable(new ColorDrawable(sBgColor));
             }
         }
     }

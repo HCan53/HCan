@@ -57,7 +57,6 @@ public class PhoneUtils {
                 .getSystemService(Context.TELEPHONY_SERVICE);
         String operator = tm != null ? tm.getSimOperator() : null;
         if (operator == null) return "未知";
-        @SuppressLint("MissingPermission") String imsi = tm.getSubscriberId();
         switch (operator) {
             case "46000":
             case "46002":
@@ -78,7 +77,7 @@ public class PhoneUtils {
     public static String getSubscriberId() {
         TelephonyManager tm = (TelephonyManager) UtilsInit.getApp()
                 .getSystemService(Context.TELEPHONY_SERVICE);
-        @SuppressLint("MissingPermission") String imsi = tm != null ? tm.getSubscriberId() : null;
+        @SuppressLint({"MissingPermission", "HardwareIds"}) String imsi = tm != null ? tm.getSubscriberId() : null;
         if (imsi == null) return "未知";
         if(imsi.startsWith("46000") || imsi.startsWith("46002") || imsi.startsWith("46007")) {
             return "中国移动";

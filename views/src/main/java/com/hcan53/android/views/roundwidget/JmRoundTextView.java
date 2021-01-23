@@ -26,6 +26,6 @@ public class JmRoundTextView extends AppCompatTextView {
 
     private void init(Context context, AttributeSet attrs) {
         Drawable drawable = JmRoundDrawable.fromAttributeSet(context, attrs);
-        setBackground(drawable);
+        setBackgroundDrawable(drawable);
     }
 }

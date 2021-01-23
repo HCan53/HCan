@@ -78,41 +78,39 @@ public class JmEditText extends AppCompatEditText {
 
         typedArray.recycle();
 
-        if(left_icon != -1) {
+        if (left_icon != -1) {
             initLeftView();
         }
-        if(hasDelete) {
+        if (hasDelete) {
             initDeleteView();
         }
 
         initBackground();
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void initLeftView() {
-//        if(!isInEditMode()) {
-            ic_left = getResources().getDrawable(left_icon);
-            if (left_width == 0) {
-                left_width = ic_left.getIntrinsicWidth();
-            }
-            if (left_height == 0) {
-                left_height = ic_left.getIntrinsicHeight();
-            }
-            ic_left.setBounds(0, 0, left_width, left_height);
-            setCompoundDrawables(ic_left, null, null, null);
-//        }
+        ic_left = getResources().getDrawable(left_icon);
+        if (left_width == 0) {
+            left_width = ic_left.getIntrinsicWidth();
+        }
+        if (left_height == 0) {
+            left_height = ic_left.getIntrinsicHeight();
+        }
+        ic_left.setBounds(0, 0, left_width, left_height);
+        setCompoundDrawables(ic_left, null, null, null);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void initDeleteView() {
-//        if(!isInEditMode()) {
-            ic_delete = getResources().getDrawable(delete_icon);
-            if(delete_width == 0) {
-                delete_width = ic_delete.getIntrinsicWidth();
-            }
-            if(delete_height == 0) {
-                delete_height = ic_delete.getIntrinsicHeight();
-            }
-            ic_delete.setBounds(0, 0, delete_width, delete_height);
-//        }
+        ic_delete = getResources().getDrawable(delete_icon);
+        if (delete_width == 0) {
+            delete_width = ic_delete.getIntrinsicWidth();
+        }
+        if (delete_height == 0) {
+            delete_height = ic_delete.getIntrinsicHeight();
+        }
+        ic_delete.setBounds(0, 0, delete_width, delete_height);
     }
 
     private void initBackground() {
@@ -126,18 +124,18 @@ public class JmEditText extends AppCompatEditText {
 
         Drawable[] layers = {g1, g2};
         LayerDrawable layerDrawable = new LayerDrawable(layers);
-        if(strokeWidth != 0) {
+        if (strokeWidth != 0) {
             layerDrawable.setLayerInset(1, strokeWidth, strokeWidth, strokeWidth, strokeWidth);
         } else {
             layerDrawable.setLayerInset(1, leftStrokeWidth, topStrokeWidth, rightStrokeWidth, bottomStrokeWidth);
         }
-        setBackground(layerDrawable);
+        setBackgroundDrawable(layerDrawable);
     }
 
     @Override
     protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
         super.onTextChanged(text, start, lengthBefore, lengthAfter);
-        if(hasDelete) {
+        if (hasDelete) {
             setDeleteIconVisible(hasFocus() && text.length() > 0);
         }
     }
@@ -145,7 +143,7 @@ public class JmEditText extends AppCompatEditText {
     @Override
     protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
-        if(hasDelete) {
+        if (hasDelete) {
             setDeleteIconVisible(focused && length() > 0);
         }
     }
@@ -157,7 +155,7 @@ public class JmEditText extends AppCompatEditText {
         switch (event.getAction()) {
             // 判断动作 = 手指抬起时
             case MotionEvent.ACTION_UP:
-                Drawable drawable =  ic_delete;
+                Drawable drawable = ic_delete;
                 if (drawable != null && event.getX() <= (getWidth() - getPaddingRight())
                         && event.getX() >= (getWidth() - getPaddingRight() - drawable.getBounds().width())) {
                     // 判断条件说明
@@ -177,6 +175,7 @@ public class JmEditText extends AppCompatEditText {
 
     /**
      * 控制删除按钮是否显示
+     *
      * @param deleteVisible 删除图标是否显示
      */
     private void setDeleteIconVisible(boolean deleteVisible) {

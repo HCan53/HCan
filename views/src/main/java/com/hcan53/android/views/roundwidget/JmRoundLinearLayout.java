@@ -26,6 +26,6 @@ public class JmRoundLinearLayout extends LinearLayout {
 
     private void init(Context context, AttributeSet attrs) {
         Drawable drawable = JmRoundDrawable.fromAttributeSet(context, attrs);
-        setBackground(drawable);
+        setBackgroundDrawable(drawable);
     }
 }

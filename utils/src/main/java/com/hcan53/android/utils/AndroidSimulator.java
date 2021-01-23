@@ -119,7 +119,7 @@ public class AndroidSimulator {
      *用途:检测模拟器的特有文件
      *返回:true 为模拟器
      */
-    private static String[] known_pipes = {"/dev/socket/qemud", "/dev/qemu_pipe"};
+    private static final String[] known_pipes = {"/dev/socket/qemud", "/dev/qemu_pipe"};
 
     public static boolean checkPipes() {
         for (int i = 0; i < known_pipes.length; i++) {

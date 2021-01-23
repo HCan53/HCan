@@ -36,31 +36,30 @@ public final class JLog {
 
     private static final int JSON = 0x10;
 
-    private static boolean mLogSwitch         = true;  // The switch of log.
-    private static String mGlobalTag         = null;  // The global tag of log.
-    private static boolean mTagIsSpace        = true;  // The global tag is space.
-    private static boolean mLogHeadSwitch     = true;  // The head's switch of log.
-    private static boolean mLogBorderSwitch   = true;  // The border's switch of log.
-    private static boolean mSingleTagSwitch   = true;  // The single tag of log.
-    //        private static int     mConsoleFilter     = V;     // The console's filter of log.
-    private static int     mStackDeep         = 1;     // The stack's deep of log.
-    private static int     mStackOffset       = 0;     // The stack's offset of log.
+    private static boolean mLogSwitch = true;  // The switch of log.
+    private static String mGlobalTag = null;  // The global tag of log.
+    private static boolean mTagIsSpace = true;  // The global tag is space.
+    private static boolean mLogHeadSwitch = true;  // The head's switch of log.
+    private static boolean mLogBorderSwitch = true;  // The border's switch of log.
+    private static boolean mSingleTagSwitch = true;  // The single tag of log.
+    private static int mStackDeep = 1;     // The stack's deep of log.
+    private static int mStackOffset = 0;     // The stack's offset of log.
 
-    private static final String LINE_SEP       = System.getProperty("line.separator");
-    private static final String TOP_CORNER     = "┌";
-    private static final String MIDDLE_CORNER  = "├";
-    private static final String LEFT_BORDER    = "│ ";
-    private static final String BOTTOM_CORNER  = "└";
-    private static final String SIDE_DIVIDER   = "────────────────────────────────────────────────────────";
+    private static final String LINE_SEP = StringUtils.isEmpty(System.getProperty("line.separator")) ? "" : System.getProperty("line.separator");
+    private static final String TOP_CORNER = "┌";
+    private static final String MIDDLE_CORNER = "├";
+    private static final String LEFT_BORDER = "│ ";
+    private static final String BOTTOM_CORNER = "└";
+    private static final String SIDE_DIVIDER = "────────────────────────────────────────────────────────";
     private static final String MIDDLE_DIVIDER = "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄";
-    private static final String TOP_BORDER     = TOP_CORNER + SIDE_DIVIDER + SIDE_DIVIDER;
-    private static final String MIDDLE_BORDER  = MIDDLE_CORNER + MIDDLE_DIVIDER + MIDDLE_DIVIDER;
-    private static final String BOTTOM_BORDER  = BOTTOM_CORNER + SIDE_DIVIDER + SIDE_DIVIDER;
-    private static final int    MAX_LEN        = 3000;
-    private static final String NOTHING        = "log nothing";
-    private static final String NULL           = "null";
-    private static final String ARGS           = "args";
-    private static final String PLACEHOLDER    = " ";
+    private static final String TOP_BORDER = TOP_CORNER + SIDE_DIVIDER + SIDE_DIVIDER;
+    private static final String MIDDLE_BORDER = MIDDLE_CORNER + MIDDLE_DIVIDER + MIDDLE_DIVIDER;
+    private static final String BOTTOM_BORDER = BOTTOM_CORNER + SIDE_DIVIDER + SIDE_DIVIDER;
+    private static final int MAX_LEN = 3000;
+    private static final String NOTHING = "log nothing";
+    private static final String NULL = "null";
+    private static final String ARGS = "args";
+    private static final String PLACEHOLDER = " ";
     private static ExecutorService sExecutor;
 
     private JLog() {
@@ -363,7 +362,6 @@ public final class JLog {
             Log.println(type, tag, msg);
             return;
         }
-        StringBuilder sb = new StringBuilder();
         String[] lines = msg.split(LINE_SEP);
         for (String line : lines) {
             Log.println(type, tag, LEFT_BORDER + line);

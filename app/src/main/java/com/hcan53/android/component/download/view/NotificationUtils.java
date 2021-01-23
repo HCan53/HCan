@@ -20,15 +20,13 @@ public class NotificationUtils extends ContextWrapper {
 
     private NotificationManager mManager;
     private NotificationCompat.Builder builder;
-    private Context context;
     public String notityId = "";
     private String notityName = "";
 
     public NotificationUtils(Context base) {
         super(base);
-        this.context = base;
-        notityName = context.getResources().getString(R.string.app_name);
-        notityId = context.getResources().getString(R.string.notity_id);
+        notityName = base.getResources().getString(R.string.app_name);
+        notityId = base.getResources().getString(R.string.notity_id);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createNotificationChannel();
         }

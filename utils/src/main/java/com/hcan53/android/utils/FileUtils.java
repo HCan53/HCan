@@ -312,7 +312,7 @@ public class FileUtils {
         OutputStream os = null;
         try {
             os = new BufferedOutputStream(new FileOutputStream(file));
-            byte data[] = new byte[sBufferSize];
+            byte[] data = new byte[sBufferSize];
             int len;
             while ((len = is.read(data, 0, sBufferSize)) != -1) {
                 os.write(data, 0, len);
