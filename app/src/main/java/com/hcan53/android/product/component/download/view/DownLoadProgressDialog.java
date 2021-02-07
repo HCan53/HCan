@@ -1,4 +1,4 @@
-package com.hcan53.android.component.download.view;
+package com.hcan53.android.product.component.download.view;
 
 import android.content.Context;
 import android.os.Bundle;

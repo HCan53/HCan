@@ -1,5 +1,6 @@
-package com.hcan53.android.component.download.activity;
+package com.hcan53.android.product.component.download.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,8 +14,8 @@ import android.provider.Settings;
 
 import androidx.annotation.RequiresApi;
 
-import com.hcan53.android.component.download.DownLoadService;
-import com.hcan53.android.component.download.view.DownLoadProgressDialog;
+import com.hcan53.android.product.component.download.DownLoadService;
+import com.hcan53.android.product.component.download.view.DownLoadProgressDialog;
 import com.hcan53.android.utils.StringUtils;
 import com.hcan53.android.views.dialog.JmDialog;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;

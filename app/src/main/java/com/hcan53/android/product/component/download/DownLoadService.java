@@ -1,4 +1,4 @@
-package com.hcan53.android.component.download;
+package com.hcan53.android.product.component.download;
 
 import android.app.PendingIntent;
 import android.content.Context;
@@ -9,10 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.core.app.JobIntentService;
 
 import com.hcan53.android.product.R;
-import com.hcan53.android.component.download.view.NotificationUtils;
 import com.hcan53.android.http.HttpUtils;
 import com.hcan53.android.http.callback.DownloadCallBack;
 import com.hcan53.android.http.request.DownloadListener;
+import com.hcan53.android.product.component.download.view.NotificationUtils;
 import com.hcan53.android.utils.IntentUtils;
 import com.hcan53.android.utils.SDCardUtils;
 import com.hcan53.android.utils.ToastUtils;
