@@ -1,10 +1,16 @@
 package com.hcan53.android.product.component.splash;
 
 import android.Manifest;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import com.bumptech.glide.Glide;
 import com.hcan53.android.permissions.RxPermissions;
@@ -14,6 +20,7 @@ import com.hcan53.android.product.component.splash.mvp.SplashContract;
 import com.hcan53.android.product.component.splash.mvp.SplashPresenter;
 import com.hcan53.android.product.base.BaseActivity;
 import com.hcan53.android.record.ScreenRecordService;
+import com.hcan53.android.utils.AppUtils;
 import com.hcan53.android.utils.BarUtils;
 
 import java.util.List;
@@ -35,12 +42,19 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
         return R.layout.splash_activity;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void initView() {
         BarUtils.hideStatusBar(this, true);
         img_splash = findViewById(R.id.img_splash);
         txt_splash = findViewById(R.id.txt_splash);
         rxPermissions = new RxPermissions(this);
+        if (!Settings.canDrawOverlays(this)) {
+            //若未授权则请求权限
+            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+            intent.setData(Uri.parse("package:" + AppUtils.getAppPackageName()));
+            startActivityForResult(intent, 0);
+        }
     }
 
     @Override
