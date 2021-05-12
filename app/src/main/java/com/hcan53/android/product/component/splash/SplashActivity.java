@@ -1,15 +1,10 @@
 package com.hcan53.android.product.component.splash;
 
 import android.Manifest;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 
@@ -21,10 +16,6 @@ import com.hcan53.android.product.component.splash.mvp.SplashBean;
 import com.hcan53.android.product.component.splash.mvp.SplashContract;
 import com.hcan53.android.product.component.splash.mvp.SplashPresenter;
 import com.hcan53.android.product.base.BaseActivity;
-import com.hcan53.android.screen.record.ScreenRecordUtil;
-import com.hcan53.android.screen.shot.ScreenShotUtil;
-import com.hcan53.android.screen.utils.ScreenUtil;
-import com.hcan53.android.utils.AppUtils;
 import com.hcan53.android.utils.BarUtils;
 import com.hcan53.android.views.progress.RoundProgressBar;
 

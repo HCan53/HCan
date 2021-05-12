@@ -45,7 +45,7 @@ android {
     }
     repositories {
         flatDir {
-            dirs '../views/libs'
+            dirs 'libs'
         }
     }
 }
@@ -60,8 +60,5 @@ dependencies {
     implementation project(path: ':views')
     implementation project(path: ':permissions')
     implementation project(path: ':screen')
-//    implementation 'com.github.HCan53.HCan:1.0.2'
-//    implementation 'com.github.HCan53.HCan:http:1.0.2'
-//    implementation 'com.github.HCan53.HCan:utils:1.0.2'
-
+//    implementation 'com.github.HCan53:HCan:1.0.3'
 }

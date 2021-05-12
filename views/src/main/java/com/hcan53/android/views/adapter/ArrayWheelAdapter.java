@@ -1,6 +1,7 @@
 package com.hcan53.android.views.adapter;
 
-import com.contrarywind.adapter.WheelAdapter;
+
+import com.hcan53.android.views.wheelview.adapter.WheelAdapter;
 
 import java.util.List;
 

@@ -21,10 +21,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.contrarywind.view.WheelView;
 import com.hcan53.android.views.R;
 import com.hcan53.android.views.adapter.ArrayWheelAdapter;
 import com.hcan53.android.views.utils.StringUtils;
+import com.hcan53.android.views.wheelview.view.WheelView;
 
 import java.util.ArrayList;
 import java.util.Collections;
