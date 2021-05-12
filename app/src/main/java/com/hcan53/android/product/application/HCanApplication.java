@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 
 import com.hcan53.android.http.HttpUtils;
-import com.hcan53.android.record.RecordInit;
+import com.hcan53.android.screen.RecordInit;
 import com.hcan53.android.utils.JLog;
 import com.hcan53.android.utils.UtilsInit;
 

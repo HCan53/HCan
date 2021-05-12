@@ -1,6 +1,5 @@
 package com.hcan53.android.product.component.download.activity;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -16,6 +15,7 @@ import androidx.annotation.RequiresApi;
 
 import com.hcan53.android.product.component.download.DownLoadService;
 import com.hcan53.android.product.component.download.view.DownLoadProgressDialog;
+import com.hcan53.android.utils.AppUtils;
 import com.hcan53.android.utils.StringUtils;
 import com.hcan53.android.views.dialog.JmDialog;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
@@ -32,7 +32,14 @@ public class DownLoadActivity extends RxAppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        showUpdateDialog();
+        if (!Settings.canDrawOverlays(this)) {
+            //若未授权则请求权限
+            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+            intent.setData(Uri.parse("package:" + AppUtils.getAppPackageName()));
+            startActivityForResult(intent, 0);
+        } else {
+            showUpdateDialog();
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

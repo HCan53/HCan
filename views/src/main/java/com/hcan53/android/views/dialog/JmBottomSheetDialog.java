@@ -22,8 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.hcan53.android.views.R;
 import com.hcan53.android.views.adapter.BottomSheetListAdapter;
-import com.hcan53.android.views.roundwidget.JmRoundButton;
-import com.hcan53.android.views.roundwidget.JmRoundTextView;
+import com.hcan53.android.views.round.JmRoundButton;
+import com.hcan53.android.views.round.JmRoundTextView;
 import com.hcan53.android.views.utils.StringUtils;
 
 import java.util.Arrays;

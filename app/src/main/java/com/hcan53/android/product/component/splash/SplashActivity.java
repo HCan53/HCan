@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -15,26 +16,37 @@ import androidx.annotation.RequiresApi;
 import com.bumptech.glide.Glide;
 import com.hcan53.android.permissions.RxPermissions;
 import com.hcan53.android.product.R;
+import com.hcan53.android.product.component.record.RecordActivity;
 import com.hcan53.android.product.component.splash.mvp.SplashBean;
 import com.hcan53.android.product.component.splash.mvp.SplashContract;
 import com.hcan53.android.product.component.splash.mvp.SplashPresenter;
 import com.hcan53.android.product.base.BaseActivity;
-import com.hcan53.android.record.ScreenRecordService;
+import com.hcan53.android.screen.record.ScreenRecordUtil;
+import com.hcan53.android.screen.shot.ScreenShotUtil;
+import com.hcan53.android.screen.utils.ScreenUtil;
 import com.hcan53.android.utils.AppUtils;
 import com.hcan53.android.utils.BarUtils;
+import com.hcan53.android.views.progress.RoundProgressBar;
 
 import java.util.List;
 
 
 public class SplashActivity extends BaseActivity<SplashPresenter> implements SplashContract.View {
     private ImageView img_splash;
-    private TextView txt_splash;
+    private RelativeLayout jumpNext;
+    private RoundProgressBar progressBar;
 
     private RxPermissions rxPermissions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        progressBar.cancelTimerCount();
     }
 
     @Override
@@ -45,37 +57,34 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void initView() {
-        BarUtils.hideStatusBar(this, true);
+        BarUtils.hideStatusBar(this, false);
         img_splash = findViewById(R.id.img_splash);
-        txt_splash = findViewById(R.id.txt_splash);
+        jumpNext = findViewById(R.id.rl_jump_main_ac);
+        progressBar = findViewById(R.id.rpb_go_next);
         rxPermissions = new RxPermissions(this);
-        if (!Settings.canDrawOverlays(this)) {
-            //若未授权则请求权限
-            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-            intent.setData(Uri.parse("package:" + AppUtils.getAppPackageName()));
-            startActivityForResult(intent, 0);
-        }
+
+        img_splash.setOnClickListener(view -> {
+            //TODO 广告跳转
+        });
+        jumpNext.setOnClickListener(view -> {
+            //TODO 跳转至下一级页面
+            goNextAc();
+        });
+        progressBar.setFinshListener(() -> {
+            //TODO 自动跳转至下一级页面
+            goNextAc();
+        });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void initData() {
         presenter.requestSplash();
         rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe(aBoolean -> {
-
         });
-        img_splash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ScreenRecordService.enqueueWork(SplashActivity.this, ScreenRecordService.START);
-            }
-        });
-        txt_splash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ScreenRecordService.enqueueWork(SplashActivity.this, ScreenRecordService.STOP);
-            }
-        });
+        progressBar.startTimerCount();
     }
+
 
     @Override
     public void setPresenter() {
@@ -97,9 +106,17 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
         if (splashBean != null) {
             List<SplashBean.SplashInfo> list = splashBean.getList();
             if (list != null && list.size() > 0) {
-                txt_splash.setText(list.get(0).getTitle());
                 Glide.with(this).load(list.get(0).getImage()).into(img_splash);
             }
         }
+    }
+
+    /**
+     * 跳转至主工程页面
+     */
+    private void goNextAc() {
+        progressBar.cancelTimerCount();
+        RecordActivity.intentActivity(this);
+        finish();
     }
 }

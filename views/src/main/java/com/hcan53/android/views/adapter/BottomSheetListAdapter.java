@@ -6,7 +6,7 @@ import android.view.View;
 import com.hcan53.android.views.R;
 import com.hcan53.android.views.base.BaseHolder;
 import com.hcan53.android.views.base.BaseRecyclerViewAdapter;
-import com.hcan53.android.views.roundwidget.JmRoundTextView;
+import com.hcan53.android.views.round.JmRoundTextView;
 
 import java.util.List;
 

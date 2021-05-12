@@ -1,8 +1,10 @@
 package com.hcan53.android.utils;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -145,6 +147,10 @@ public class BitmapUtils {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            Uri uri = Uri.fromFile(file);
+            intent.setData(uri);
+            UtilsInit.getApp().sendBroadcast(intent);
         }
         return ret;
     }

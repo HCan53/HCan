@@ -42,15 +42,19 @@
                     android:pathPrefix="/openapp"
                     android:scheme="hcscheme" />
             </intent-filter>
+            <meta-data  android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
         </activity>
+        <activity android:name=".application.MainActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".component.download.activity.DownLoadActivity"/>
+        <activity android:name=".component.record.RecordActivity"/>
 
 
         <service
             android:name=".component.download.DownLoadService"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE"
-            android:process="com.hanweb.android.product.download"></service>
-
+            android:process="com.hanweb.android.download"></service>
         <provider
             android:name=".component.download.InstallApkProvider"
             android:authorities="com.hcan53.android.component.download.fileprovider"

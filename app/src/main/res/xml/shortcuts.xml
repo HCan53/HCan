@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/icon"
+        android:shortcutId="hcanshort"
+        android:shortcutLongLabel="@string/static_one_long_label"
+        android:shortcutShortLabel="@string/static_one_short_label">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.hcan53.android.product.component.download.activity.DownLoadActivity"
+            android:targetPackage="com.hcan53.android.product" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+</shortcuts>

@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.hcan53.android.views.JmEditText;
+import com.hcan53.android.views.jm.JmEditText;
 import com.hcan53.android.views.R;
 import com.hcan53.android.views.utils.ScreenUtils;
 import com.hcan53.android.views.utils.StringUtils;

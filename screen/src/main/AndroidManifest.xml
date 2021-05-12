@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hcan53.android.screen">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--外部存储的读权限-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" /><!--JobIntentService使用权限-->
+
+    <application>
+        <activity
+            android:name=".ScreenPermissionActivity"
+            android:theme="@style/RecordTheme"></activity>
+
+        <service
+            android:name=".shot.ScreenShotService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="mediaProjection"
+            android:permission="android.permission.BIND_JOB_SERVICE"></service>
+        <service
+            android:name=".record.ScreenRecordService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="mediaProjection"
+            android:permission="android.permission.BIND_JOB_SERVICE"></service>
+    </application>
+</manifest>

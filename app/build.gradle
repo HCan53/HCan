@@ -1,21 +1,42 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        OnlineCert {
+            keyAlias 'HCan532577'
+            keyPassword 'HCan532577'
+            storeFile file('../HCan532577')
+            storePassword 'HCan532577'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
     defaultConfig {
-        applicationId "com.hcan53.android.product.download"
+        applicationId "com.hcan53.android.product"
         minSdkVersion 15
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86"
+        }
     }
     buildTypes {
         release {
-            minifyEnabled false
+            multiDexEnabled true
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.OnlineCert
+        }
+        debug {
+            multiDexEnabled true
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.OnlineCert
         }
     }
     compileOptions {
@@ -24,7 +45,7 @@ android {
     }
     repositories {
         flatDir {
-            dirs 'libs'
+            dirs '../views/libs'
         }
     }
 }
@@ -38,7 +59,7 @@ dependencies {
     implementation project(path: ':http')
     implementation project(path: ':views')
     implementation project(path: ':permissions')
-    implementation project(path: ':record')
+    implementation project(path: ':screen')
 //    implementation 'com.github.HCan53.HCan:1.0.2'
 //    implementation 'com.github.HCan53.HCan:http:1.0.2'
 //    implementation 'com.github.HCan53.HCan:utils:1.0.2'

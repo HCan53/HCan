@@ -1,4 +1,4 @@
-include ':record'
+include ':screen'
 include ':permissions'
 include ':views'
 include ':utils'

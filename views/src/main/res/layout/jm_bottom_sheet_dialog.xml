@@ -12,7 +12,7 @@
         android:layout_weight="1.0"
         android:orientation="vertical">
 
-        <com.hcan53.android.views.roundwidget.JmRoundTextView
+        <com.hcan53.android.views.round.JmRoundTextView
             android:id="@+id/dialog_tilte_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:scrollbars="none" />
     </LinearLayout>
 
-    <com.hcan53.android.views.roundwidget.JmRoundButton
+    <com.hcan53.android.views.round.JmRoundButton
         android:id="@+id/dialog_cancel_btn"
         android:layout_width="match_parent"
         android:layout_height="48dp"
