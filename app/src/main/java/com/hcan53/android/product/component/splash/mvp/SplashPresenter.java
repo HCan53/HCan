@@ -35,7 +35,7 @@ public class SplashPresenter extends BasePresenter<SplashContract.View, Activity
                         splashBean.setAppDownLoadUrl(object.optString("appDownLoadUrl", ""));
                         splashBean.setIsForcible(object.optString("isForcible", ""));
                         splashBean.setProtocolVersion(object.optString("protocolVersion", ""));
-                        splashBean.setUserUrl(object.optString("userUrl", ""));
+                        splashBean.setUserServiceUrl(object.optString("userServiceUrl", ""));
                         splashBean.setPrivacyUrl(object.optString("privacyUrl", ""));
                         JSONArray helpArr = object.optJSONArray("help");
                         List<String> help = new ArrayList<>();
@@ -44,7 +44,7 @@ public class SplashPresenter extends BasePresenter<SplashContract.View, Activity
                                 help.add(helpArr.optString(i, ""));
                             }
                         }
-                        splashBean.setHelpimgs(help);
+                        splashBean.setHelpImgs(help);
                         JSONArray splashArr = object.optJSONArray("splash");
                         List<SplashBean.SplashInfo> splash = new ArrayList<>();
                         if (splashArr != null && splashArr.length() > 0) {
@@ -57,7 +57,7 @@ public class SplashPresenter extends BasePresenter<SplashContract.View, Activity
                                 splash.add(splashInfo);
                             }
                         }
-                        splashBean.setList(splash);
+                        splashBean.setSplashList(splash);
                         if (getView() != null) {
                             getView().showSplash(splashBean);
                         }

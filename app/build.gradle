@@ -9,12 +9,11 @@ android {
             storePassword 'HCan532577'
         }
     }
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 31
     defaultConfig {
         applicationId "com.hcan53.android.product"
-        minSdkVersion 15
-        targetSdkVersion 30
+        minSdkVersion 17
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -48,6 +47,8 @@ android {
             dirs 'libs'
         }
     }
+
+    useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {
@@ -55,10 +56,19 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.huawei.hms:scanplus:1.1.1.301'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation project(path: ':utils')
     implementation project(path: ':http')
     implementation project(path: ':views')
     implementation project(path: ':permissions')
     implementation project(path: ':screen')
-//    implementation 'com.github.HCan53:HCan:1.0.3'
+    implementation project(path: ':defense')
+    implementation project(path: ':facecropper')
+    implementation project(path: ':album')
+    implementation project(path: ':draft')
+    implementation project(path: ':draft')
+//    implementation 'com.github.HCan53:HCan:1.0.5'
+
 }

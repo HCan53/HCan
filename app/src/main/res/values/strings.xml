@@ -3,4 +3,6 @@
     <string name="notity_id">HCan</string>
     <string name="static_one_long_label">更新下载</string>
     <string name="static_one_short_label">更新下载</string>
+    <string name="apply_exit" translatable="false">再按一次退出程序</string>
+
 </resources>

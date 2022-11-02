@@ -3,7 +3,7 @@
 <paths>
     <external-path
         name="files_root"
-        path="Android/data/com.hcan53.android.product.download/" />
+        path="Android/data/com.hcan53.android.product/" />
     <root-path
         name="root_path"
         path="." />

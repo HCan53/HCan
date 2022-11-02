@@ -4,10 +4,10 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url 'http://developer.huawei.com/repo/' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.1'
-        
+        classpath 'com.android.tools.build:gradle:4.2.2'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -16,8 +16,10 @@ buildscript {
 allprojects {
     repositories {
         google()
+        jcenter()
         mavenCentral()
-        maven {url 'https://jitpack.io'}
+        maven { url 'https://jitpack.io' }
+        maven { url 'http://developer.huawei.com/repo/' }
     }
 
     gradle.projectsEvaluated {

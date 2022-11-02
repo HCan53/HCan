@@ -50,16 +50,24 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.txt_shot:
-                //TODO 截屏
+                //截屏
                 ScreenShotUtil.getInstance().screenShot(RecordActivity.this);
                 break;
             case R.id.txt_start_record:
-                //TODO 开始录屏
-                ScreenRecordUtil.getInstance().screenRecord(RecordActivity.this);
+                //开始录屏
+                Intent start = new Intent("com.hanweb.android.record");
+                start.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+                start.putExtra("action","start");
+                sendBroadcast(start);
+//                ScreenRecordUtil.getInstance().screenRecord(RecordActivity.this);
                 break;
             case R.id.txt_stop_record:
-                //TODO 停止录屏
-                ScreenRecordUtil.getInstance().destroy();
+                //停止录屏
+                Intent stop = new Intent("com.hanweb.android.record");
+                stop.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+                stop.putExtra("action","stop");
+                sendBroadcast(stop);
+//                ScreenRecordUtil.getInstance().destroy();
                 break;
             default:
                 break;
@@ -68,5 +76,20 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 
     public static void intentActivity(Activity ac) {
         ac.startActivity(new Intent(ac, RecordActivity.class));
+    }
+
+    @Override
+    public void setPresenter() {
+
+    }
+
+    @Override
+    public void showEmptyView() {
+
+    }
+
+    @Override
+    public void toastMessage(String message) {
+
     }
 }

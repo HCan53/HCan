@@ -24,10 +24,11 @@ public class ScreenPermissionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         MediaProjectionManager projectionManager = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            //5.0 之后才允许使用屏幕截图
             projectionManager = (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
             startActivityForResult(projectionManager.createScreenCaptureIntent(), REQUEST_MEDIA_PROJECTION);
         } else {
-            requestCapturePermission();
+            finish();
         }
     }
 
@@ -38,26 +39,16 @@ public class ScreenPermissionActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_MEDIA_PROJECTION) {
             if (isScrennShot) {
+                //截屏
                 ScreenShotUtil.getInstance().permissionResult(resultCode, data);
             } else {
+                //录屏
                 ScreenRecordUtil.getInstance().permissionResult(resultCode, data);
             }
             finish();
-        }
-    }
-
-    //请求权限
-    private void requestCapturePermission() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            //5.0 之后才允许使用屏幕截图
-            return;
-        }
-        if (isScrennShot) {
-            startActivityForResult(ScreenShotUtil.mMediaProjectionManager.createScreenCaptureIntent(), REQUEST_MEDIA_PROJECTION);
         } else {
-            startActivityForResult(ScreenRecordUtil.mMediaProjectionManager.createScreenCaptureIntent(), REQUEST_MEDIA_PROJECTION);
+            finish();
         }
-
     }
 
     @Override

@@ -20,7 +20,7 @@ public class SplashBean implements Parcelable {
      */
     private String appDownLoadUrl;
     /**
-     * 是否为前置更新
+     * 是否为强制更新
      * 1：是
      * 0：不是
      */
@@ -32,15 +32,21 @@ public class SplashBean implements Parcelable {
     /**
      * 用户服务协议链接
      */
-    private String userUrl;
+    private String userServiceUrl;
     /**
      * 隐私政策链接
      */
     private String privacyUrl;
 
-    private List<SplashInfo> list;
+    /**
+     * 启动页信息
+     */
+    private List<SplashInfo> splashList;
 
-    private List<String> helpimgs;
+    /**
+     * 新手引导图片
+     */
+    private List<String> helpImgs;
 
     public String getAppVersion() {
         return appVersion;
@@ -74,12 +80,12 @@ public class SplashBean implements Parcelable {
         this.protocolVersion = protocolVersion;
     }
 
-    public String getUserUrl() {
-        return userUrl;
+    public String getUserServiceUrl() {
+        return userServiceUrl;
     }
 
-    public void setUserUrl(String userUrl) {
-        this.userUrl = userUrl;
+    public void setUserServiceUrl(String userServiceUrl) {
+        this.userServiceUrl = userServiceUrl;
     }
 
     public String getPrivacyUrl() {
@@ -90,20 +96,20 @@ public class SplashBean implements Parcelable {
         this.privacyUrl = privacyUrl;
     }
 
-    public List<SplashInfo> getList() {
-        return list;
+    public List<SplashInfo> getSplashList() {
+        return splashList;
     }
 
-    public void setList(List<SplashInfo> list) {
-        this.list = list;
+    public void setSplashList(List<SplashInfo> splashList) {
+        this.splashList = splashList;
     }
 
-    public List<String> getHelpimgs() {
-        return helpimgs;
+    public List<String> getHelpImgs() {
+        return helpImgs;
     }
 
-    public void setHelpimgs(List<String> helpimgs) {
-        this.helpimgs = helpimgs;
+    public void setHelpImgs(List<String> helpImgs) {
+        this.helpImgs = helpImgs;
     }
 
     @Override

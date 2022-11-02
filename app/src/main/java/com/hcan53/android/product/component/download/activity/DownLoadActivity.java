@@ -1,18 +1,22 @@
 package com.hcan53.android.product.component.download.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.View;
 
 
 import androidx.annotation.RequiresApi;
 
+import com.hcan53.android.permissions.RxPermissions;
 import com.hcan53.android.product.component.download.DownLoadService;
 import com.hcan53.android.product.component.download.view.DownLoadProgressDialog;
 import com.hcan53.android.utils.AppUtils;
@@ -27,10 +31,12 @@ public class DownLoadActivity extends RxAppCompatActivity {
     private MyReceiver receiver;
     private DownLoadProgressDialog downLoadProgressDialog;
     private JmDialog mDialog;
+    private RxPermissions rxPermissions;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        rxPermissions = new RxPermissions(this);
         super.onCreate(savedInstanceState);
         if (!Settings.canDrawOverlays(this)) {
             //若未授权则请求权限
@@ -38,7 +44,11 @@ public class DownLoadActivity extends RxAppCompatActivity {
             intent.setData(Uri.parse("package:" + AppUtils.getAppPackageName()));
             startActivityForResult(intent, 0);
         } else {
-            showUpdateDialog();
+            rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE).subscribe(aBoolean -> {
+                if (aBoolean)
+                    showUpdateDialog();
+            });
         }
     }
 
@@ -95,10 +105,10 @@ public class DownLoadActivity extends RxAppCompatActivity {
                     downLoadProgressDialog.changePro(progress);
                     if (progress == 100) {
                         downLoadProgressDialog.dismiss();
+                        finish();
                     }
                 }
             }
-            // TODO  处理接收到的内容
         }
 
         public MyReceiver() {

@@ -131,6 +131,7 @@ public class ScreenRecordUtil {
      * 结束录屏
      */
     public void destroy() {
+        if(videoDir==null)return;
         if (mRecorder != null) {
             mRecorder.quit();
             mRecorder = null;

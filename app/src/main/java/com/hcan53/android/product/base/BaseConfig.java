@@ -7,7 +7,7 @@ public class BaseConfig {
     /**
      * 应用域名
      */
-    public static String MAIN_URL = "http://192.168.2.100:8080/";
+    public static String MAIN_URL = "http://192.168.85.77:8080/";
 
     /**
      * 启动页数据

@@ -6,8 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import com.hcan53.android.utils.BarUtils;
-import com.hcan53.android.utils.StringUtils;
-import com.hcan53.android.utils.ToastUtils;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 /**
@@ -39,18 +37,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends RxAppCompatA
     protected abstract void initData();
 
     @Override
-    public void setPresenter() {
-
-    }
-
-    @Override
-    public void showEmptyView() {
-
-    }
-
-    @Override
-    public void toastMessage(String message) {
-        if (!StringUtils.isEmpty(message))
-            ToastUtils.showShort(message);
+    public void onBackPressed() {
+       finish();
     }
 }

@@ -4,14 +4,18 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="delegatedBuild" value="false" />
-        <option name="testRunner" value="PLATFORM" />
+        <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="Android Studio java home" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/album" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/defense" />
+            <option value="$PROJECT_DIR$/draft" />
+            <option value="$PROJECT_DIR$/facecropper" />
             <option value="$PROJECT_DIR$/http" />
             <option value="$PROJECT_DIR$/permissions" />
             <option value="$PROJECT_DIR$/screen" />
@@ -19,8 +23,6 @@
             <option value="$PROJECT_DIR$/views" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
-        <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
     </option>
   </component>

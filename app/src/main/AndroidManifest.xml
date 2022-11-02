@@ -14,7 +14,21 @@
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
-    <uses-sdk tools:overrideLibrary="com.phcx.businessmodule" />
+    <!--相机权限-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!--读文件权限-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!--使用特性-->
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-sdk tools:overrideLibrary="com.huawei.hms.scankit,
+            com.huawei.hms.feature.dynamic,
+            com.huawei.agconnect.core,
+            com.huawei.hms.mlsdk.common" />
+
     <application
         android:name=".application.HCanApplication"
         android:allowBackup="true"
@@ -22,6 +36,7 @@
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -42,13 +57,25 @@
                     android:pathPrefix="/openapp"
                     android:scheme="hcscheme" />
             </intent-filter>
-            <meta-data  android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
-        </activity>
-        <activity android:name=".application.MainActivity"
-            android:launchMode="singleTask"/>
-        <activity android:name=".component.download.activity.DownLoadActivity"/>
-        <activity android:name=".component.record.RecordActivity"/>
 
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+        </activity>
+        <activity
+            android:name=".application.MainActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".component.download.activity.DownLoadActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:hardwareAccelerated="false" />
+        <activity android:name=".component.record.RecordActivity" />
+        <activity android:name=".component.facecropper.FaceCropperActivity" />
+        <activity android:name=".component.blur.FastBlurActivity" />
+        <!--对扫码页面进行声明-->
+        <activity android:name="com.huawei.hms.hmsscankit.ScanKitActivity" />
 
         <service
             android:name=".component.download.DownLoadService"
@@ -57,13 +84,24 @@
             android:process="com.hanweb.android.download"></service>
         <provider
             android:name=".component.download.InstallApkProvider"
-            android:authorities="com.hcan53.android.component.download.fileprovider"
+            android:authorities="com.hcan53.android.product.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <receiver android:name=".application.BootBroadcastReceiver">
+            <intent-filter>
+                <!--注册开机广播地址-->
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+
+
     </application>
 
 </manifest>

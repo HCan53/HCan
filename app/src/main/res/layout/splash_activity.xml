@@ -27,8 +27,8 @@
             app:countDownInterval="50"
             app:millisInFuture="5000"
             app:radiuss="16dp"
-            app:ringColor="#DD191D"
-            app:roundColor="@android:color/white"
+            app:ringColor="@color/app_theme_color"
+            app:roundColor="@color/white"
             app:strokeWidths="1dp" />
 
         <TextView
