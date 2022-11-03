@@ -55,7 +55,7 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
                 break;
             case R.id.txt_start_record:
                 //开始录屏
-                Intent start = new Intent("com.hanweb.android.record");
+                Intent start = new Intent("com.hcan.android.record");
                 start.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
                 start.putExtra("action","start");
                 sendBroadcast(start);
@@ -63,7 +63,7 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
                 break;
             case R.id.txt_stop_record:
                 //停止录屏
-                Intent stop = new Intent("com.hanweb.android.record");
+                Intent stop = new Intent("com.hcan.android.record");
                 stop.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
                 stop.putExtra("action","stop");
                 sendBroadcast(stop);

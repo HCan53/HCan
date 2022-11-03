@@ -20,7 +20,7 @@ import java.lang.reflect.InvocationTargetException;
  * <p>Created by Fenghj on 2018/6/4.</p>
  */
 public class HttpUtils {
-    private String mBaseUrl = "http://jmpotal.hanweb.com/jmp/"; //全局BaseUrl
+    private String mBaseUrl = ""; //全局BaseUrl
     private volatile static HttpUtils singleton = null;
     @SuppressLint("StaticFieldLeak")
     private static Application sApplication;
