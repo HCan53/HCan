@@ -41,8 +41,9 @@ public class StringUtils {
      * @return {@code true}: null或全空白字符<br> {@code false}: 不为null且不全空白字符
      */
     public static boolean isSpace(final String s) {
-        if (s == null || "null".equals(s))
+        if (s == null || "null".equals(s)){
             return true;
+        }
         for (int i = 0, len = s.length(); i < len; ++i) {
             if (!Character.isWhitespace(s.charAt(i))) {
                 return false;
@@ -128,8 +129,9 @@ public class StringUtils {
      * 判断该字符串是否为中文
      */
     public static boolean isChinese(String s) {
-        if (s == null || "".equals(s))
+        if (s == null || "".equals(s)){
             return false;
+        }
         for (int i = 0; i < s.length(); i++) {
             int n = (int) s.charAt(i);
             if (!(19968 <= n && n < 40869)) {
@@ -143,8 +145,9 @@ public class StringUtils {
      * 判断输入是否是表情
      */
     public static boolean containsEmoji(final CharSequence s) {
-        if (isEmpty(s))
+        if (isEmpty(s)){
             return false;
+        }
         int len = s.length();
         for (int i = 0; i < len; i++) {
             char hs = s.charAt(i);

@@ -14,6 +14,6 @@ public class SplashModel {
      */
     public void requestSplash(RequestCallBack<String> callBack) {
         String url = BaseConfig.SPLASH_URL;
-        HttpUtils.get(url).execute(callBack);
+//        HttpUtils.get(url).execute(callBack);
     }
 }

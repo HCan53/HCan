@@ -11,6 +11,7 @@ import com.hcan53.android.product.BuildConfig;
 import com.hcan53.android.screen.RecordInit;
 import com.hcan53.android.utils.JLog;
 import com.hcan53.android.utils.UtilsInit;
+import com.tencent.bugly.crashreport.CrashReport;
 
 
 /**
@@ -23,7 +24,7 @@ public class HCanApplication extends Application implements IExceptionHandler {
     @Override
     public void onCreate() {
         super.onCreate();
-        this.app = this;
+        app = this;
         //防闪退
         if (!BuildConfig.DEBUG) {
             //初始化防crash
@@ -34,6 +35,7 @@ public class HCanApplication extends Application implements IExceptionHandler {
         UtilsInit.init(this);
         HttpUtils.init(this);
         RecordInit.init(this);
+        CrashReport.initCrashReport(getApplicationContext(), "82722e1107", true);
     }
 
     @Override

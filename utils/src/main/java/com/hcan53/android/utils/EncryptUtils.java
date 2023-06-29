@@ -26,7 +26,9 @@ public class EncryptUtils {
      * @return 16进制密文
      */
     public static String encryptMD5ToString(final String data) {
-        if (data == null || data.length() == 0) return "";
+        if (data == null || data.length() == 0) {
+            return "";
+        }
         return bytes2HexString(encryptMD5(data.getBytes()));
     }
 
@@ -59,7 +61,9 @@ public class EncryptUtils {
      */
     public static String encryptAES2Base64(final String data, final String key, final String iv) {
         byte[] bytes = encryptAES(data, key, iv);
-        if(bytes != null) return Base64.encodeToString(bytes, Base64.DEFAULT);
+        if (bytes != null) {
+            return Base64.encodeToString(bytes, Base64.DEFAULT);
+        }
         return null;
     }
 
@@ -96,7 +100,9 @@ public class EncryptUtils {
      * @return 明文
      */
     public static String decryptBase64AES(final String data, final String key, final String iv) {
-        if(data == null || "".equals(data)) return null;
+        if (data == null || "".equals(data)) {
+            return null;
+        }
         return new String(decryptAES(Base64.decode(data, Base64.DEFAULT), key, iv));
     }
 
@@ -110,7 +116,9 @@ public class EncryptUtils {
      */
     public static String decryptHexStringAES(final String data, final String key, final String iv) {
         byte[] bytes = decryptAES(hexString2Bytes(data), key, iv);
-        if(bytes == null || bytes.length == 0) return null;
+        if (bytes == null || bytes.length == 0) {
+            return null;
+        }
         return new String(bytes);
     }
 
@@ -129,9 +137,13 @@ public class EncryptUtils {
     private static final char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     private static String bytes2HexString(final byte[] bytes) {
-        if (bytes == null) return "";
+        if (bytes == null) {
+            return "";
+        }
         int len = bytes.length;
-        if (len <= 0) return "";
+        if (len <= 0) {
+            return "";
+        }
         char[] ret = new char[len << 1];
         for (int i = 0, j = 0; i < len; i++) {
             ret[j++] = hexDigits[bytes[i] >>> 4 & 0x0f];
@@ -141,7 +153,9 @@ public class EncryptUtils {
     }
 
     private static byte[] hexString2Bytes(String hexString) {
-        if (hexString == null || "".equals(hexString)) return null;
+        if (hexString == null || "".equals(hexString)) {
+            return null;
+        }
         int len = hexString.length();
         if (len % 2 != 0) {
             hexString = "0" + hexString;
@@ -173,7 +187,9 @@ public class EncryptUtils {
      * @return 密文字节数组
      */
     private static byte[] hashTemplate(final byte[] data, final String algorithm) {
-        if (data == null || data.length <= 0) return null;
+        if (data == null || data.length <= 0) {
+            return null;
+        }
         try {
             MessageDigest md = MessageDigest.getInstance(algorithm);
             md.update(data);
@@ -194,8 +210,9 @@ public class EncryptUtils {
      * @return 密文或者明文
      */
     public static byte[] aesTemplate(final byte[] data, final byte[] key, final byte[] iv, final boolean isEncrypt) {
-        if (data == null || data.length == 0 || key == null || key.length == 0 || iv == null || iv.length == 0)
+        if (data == null || data.length == 0 || key == null || key.length == 0 || iv == null || iv.length == 0) {
             return null;
+        }
         try {
             SecretKeySpec keySpec = new SecretKeySpec(key, AES_Algorithm);
             Cipher cipher = Cipher.getInstance(AES_Transformation);

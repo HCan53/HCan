@@ -36,7 +36,7 @@ public class DownloadRequest extends BaseRequest {
         this(url, null);
     }
 
-    public DownloadRequest( String url, DownloadListener listener) {
+    public DownloadRequest(String url, DownloadListener listener) {
         super(url, listener);
         downloadListener = listener;
         dirName = SDCardUtils.getCachePath(Environment.DIRECTORY_DOWNLOADS);
@@ -148,16 +148,22 @@ public class DownloadRequest extends BaseRequest {
             return file;
 
         } catch (IOException e) {
-            if (downloadListener != null) downloadListener.onFail("IOException");
+            if (downloadListener != null) {
+                downloadListener.onFail("IOException");
+            }
             e.printStackTrace();
         } finally {
             try {
-                if (inputStream != null) inputStream.close();
+                if (inputStream != null) {
+                    inputStream.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
             try {
-                if (fos != null) fos.close();
+                if (fos != null) {
+                    fos.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

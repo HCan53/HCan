@@ -14,7 +14,8 @@
     <application>
         <activity
             android:name=".ScreenPermissionActivity"
-            android:theme="@style/RecordTheme"></activity>
+            android:theme="@style/RecordTheme"
+            android:exported="true"></activity>
 
         <service
             android:name=".shot.ScreenShotService"

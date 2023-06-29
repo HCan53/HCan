@@ -1,7 +1,6 @@
 package com.hcan53.android.http.observer;
 
 
-
 import com.hcan53.android.http.callback.DownloadCallBack;
 import com.hcan53.android.http.callback.RequestCallBack;
 
@@ -20,8 +19,9 @@ public class DownLoadObserver<T> extends CallbackObserver<T> {
 
     /**
      * 将文件写入本地
+     *
      * @param responseBody 请求结果全体
-     * @param destFileDir 目标文件夹
+     * @param destFileDir  目标文件夹
      * @param destFileName 目标文件名
      * @return 写入完成的文件
      * @throws IOException IO异常
@@ -48,7 +48,7 @@ public class DownLoadObserver<T> extends CallbackObserver<T> {
                 final long finalSum = sum;
                 //这里就是对进度的监听回调
                 if (callBack instanceof DownloadCallBack) {
-                    ((DownloadCallBack)callBack).onProgress((int) (finalSum * 100 / total), total);
+                    ((DownloadCallBack) callBack).onProgress((int) (finalSum * 100 / total), total);
                 }
             }
             fos.flush();
@@ -57,12 +57,16 @@ public class DownLoadObserver<T> extends CallbackObserver<T> {
 
         } finally {
             try {
-                if (is != null) is.close();
+                if (is != null) {
+                    is.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
             try {
-                if (fos != null) fos.close();
+                if (fos != null) {
+                    fos.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

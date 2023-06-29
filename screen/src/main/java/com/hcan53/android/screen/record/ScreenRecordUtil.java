@@ -60,7 +60,9 @@ public class ScreenRecordUtil {
     }
 
     public void screenRecord(Context activity) {
-        if (mRecorder != null && mRecorder.isAlive()) return;
+        if (mRecorder != null && mRecorder.isAlive()) {
+            return;
+        }
         this.activity = activity;
         String time = OtherUtils.formatDate(System.currentTimeMillis());
         videoDir = SDCardUtils.getStorageDirectory().getPath() + "/record";
@@ -70,7 +72,7 @@ public class ScreenRecordUtil {
             file.mkdir();
         }
         String fileName = time + ".mp4";
-        this.savePath = videoDir + "/" + fileName;
+        savePath = videoDir + "/" + fileName;
         startRecord();
     }
 
@@ -81,9 +83,11 @@ public class ScreenRecordUtil {
      * @param savePath
      */
     public void screenRecord(Context activity, String savePath) {
-        if (mRecorder != null && mRecorder.isAlive()) return;
+        if (mRecorder != null && mRecorder.isAlive()) {
+            return;
+        }
         this.activity = activity;
-        this.savePath = savePath;
+        ScreenRecordUtil.savePath = savePath;
         startRecord();
     }
 
@@ -103,7 +107,9 @@ public class ScreenRecordUtil {
     //返回可以开始录屏的数据
     public void permissionResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK && data != null) {
-            if (mMediaProjectionManager == null) return;
+            if (mMediaProjectionManager == null) {
+                return;
+            }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 Intent service = new Intent(activity, ScreenRecordService.class);
                 service.putExtra("code", resultCode);
@@ -117,8 +123,9 @@ public class ScreenRecordUtil {
                 }
             }
         } else {
-            if (recordListener != null)
+            if (recordListener != null){
                 recordListener.screenRecord(false, "");
+            }
         }
     }
 
@@ -131,7 +138,9 @@ public class ScreenRecordUtil {
      * 结束录屏
      */
     public void destroy() {
-        if(videoDir==null)return;
+        if(videoDir==null){
+            return;
+        }
         if (mRecorder != null) {
             mRecorder.quit();
             mRecorder = null;
@@ -141,8 +150,9 @@ public class ScreenRecordUtil {
             Intent service = new Intent(activity, ScreenRecordService.class);
             activity.stopService(service);
         }
-        if (recordListener != null)
+        if (recordListener != null){
             recordListener.screenRecord(true, savePath);
+        }
         Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         Uri uri = Uri.fromFile(new File(videoDir));
         intent.setData(uri);

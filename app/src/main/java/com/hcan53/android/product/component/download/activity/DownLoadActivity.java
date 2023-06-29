@@ -46,8 +46,9 @@ public class DownLoadActivity extends RxAppCompatActivity {
         } else {
             rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.READ_EXTERNAL_STORAGE).subscribe(aBoolean -> {
-                if (aBoolean)
+                if (aBoolean) {
                     showUpdateDialog();
+                }
             });
         }
     }
@@ -95,13 +96,15 @@ public class DownLoadActivity extends RxAppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             if (intent != null) {
                 String type = intent.getStringExtra("TYPE");
-                if (!StringUtils.isSpace(type) && type.equals("START")) {
-                    if (!downLoadProgressDialog.isShowing())
+                if (!StringUtils.isSpace(type) && "START".equals(type)) {
+                    if (!downLoadProgressDialog.isShowing()) {
                         downLoadProgressDialog.show();
-                } else if (!StringUtils.isSpace(type) && type.equals("PRO")) {
+                    }
+                } else if (!StringUtils.isSpace(type) && "PRO".equals(type)) {
                     int progress = intent.getIntExtra("PRO", 0);
-                    if (!downLoadProgressDialog.isShowing())
+                    if (!downLoadProgressDialog.isShowing()) {
                         downLoadProgressDialog.show();
+                    }
                     downLoadProgressDialog.changePro(progress);
                     if (progress == 100) {
                         downLoadProgressDialog.dismiss();
@@ -119,8 +122,9 @@ public class DownLoadActivity extends RxAppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (receiver != null)
+        if (receiver != null) {
             unregisterReceiver(receiver);
+        }
         receiver = null;
     }
 

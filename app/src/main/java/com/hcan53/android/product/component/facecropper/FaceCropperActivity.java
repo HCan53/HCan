@@ -184,7 +184,9 @@ public class FaceCropperActivity extends BaseActivity {
         }
 
         public void setupView(View v, int position) {
-            if (v == null) return;
+            if (v == null) {
+                return;
+            }
             ImageView image = (ImageView) v.findViewById(R.id.imageView);
             ImageView imageCropped = (ImageView) v.findViewById(R.id.imageViewCropped);
             mPicasso.load(urls[position]).transform(mDebugCropTransformation).into(image);

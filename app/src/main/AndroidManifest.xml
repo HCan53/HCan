@@ -64,18 +64,24 @@
         </activity>
         <activity
             android:name=".application.MainActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:exported="true"/>
         <activity
             android:name=".component.download.activity.DownLoadActivity"
             android:theme="@style/AppTheme"
+            android:exported="true"
             android:windowSoftInputMode="adjustResize"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:hardwareAccelerated="false" />
-        <activity android:name=".component.record.RecordActivity" />
-        <activity android:name=".component.facecropper.FaceCropperActivity" />
-        <activity android:name=".component.blur.FastBlurActivity" />
+        <activity android:name=".component.record.RecordActivity"
+            android:exported="true"/>
+        <activity android:name=".component.facecropper.FaceCropperActivity"
+            android:exported="true"/>
+        <activity android:name=".component.blur.FastBlurActivity"
+            android:exported="true"/>
         <!--对扫码页面进行声明-->
-        <activity android:name="com.huawei.hms.hmsscankit.ScanKitActivity" />
+        <activity android:name="com.huawei.hms.hmsscankit.ScanKitActivity"
+            android:exported="true"/>
 
         <service
             android:name=".component.download.DownLoadService"

@@ -89,8 +89,9 @@ public class NetworkUtils {
         //获取系统的网络服务
         ConnectivityManager connManager = (ConnectivityManager) UtilsInit.getApp().getSystemService(Context.CONNECTIVITY_SERVICE);
         //如果当前没有网络
-        if (null == connManager)
+        if (null == connManager) {
             return NETWORK_NONE;
+        }
         //获取当前网络类型，如果为空，返回无网络
         @SuppressLint("MissingPermission") NetworkInfo activeNetInfo = connManager.getActiveNetworkInfo();
         if (activeNetInfo == null || !activeNetInfo.isAvailable()) {
@@ -100,28 +101,33 @@ public class NetworkUtils {
         @SuppressLint("MissingPermission") NetworkInfo wifiInfo = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         if (null != wifiInfo) {
             NetworkInfo.State state = wifiInfo.getState();
-            if (null != state)
+            if (null != state) {
                 if (state == NetworkInfo.State.CONNECTED || state == NetworkInfo.State.CONNECTING) {
                     return NETWORK_WIFI;
                 }
+            }
         }
         // 如果不是wifi，则判断当前连接的是运营商的哪种网络2g、3g、4g等
         @SuppressLint("MissingPermission") NetworkInfo networkInfo = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         if (null != networkInfo) {
             NetworkInfo.State state = networkInfo.getState();
             String strSubTypeName = networkInfo.getSubtypeName();
-            if (null != state)
+            if (null != state) {
                 if (state == NetworkInfo.State.CONNECTED || state == NetworkInfo.State.CONNECTING) {
                     switch (activeNetInfo.getSubtype()) {
                         //如果是2g类型
-                        case TelephonyManager.NETWORK_TYPE_GPRS: // 联通2g
-                        case TelephonyManager.NETWORK_TYPE_CDMA: // 电信2g
-                        case TelephonyManager.NETWORK_TYPE_EDGE: // 移动2g
+                        // 联通2g
+                        case TelephonyManager.NETWORK_TYPE_GPRS:
+                            // 电信2g
+                        case TelephonyManager.NETWORK_TYPE_CDMA:
+                            // 移动2g
+                        case TelephonyManager.NETWORK_TYPE_EDGE:
                         case TelephonyManager.NETWORK_TYPE_1xRTT:
                         case TelephonyManager.NETWORK_TYPE_IDEN:
                             return NETWORK_2G;
                         //如果是3g类型
-                        case TelephonyManager.NETWORK_TYPE_EVDO_A: // 电信3g
+                        // 电信3g
+                        case TelephonyManager.NETWORK_TYPE_EVDO_A:
                         case TelephonyManager.NETWORK_TYPE_UMTS:
                         case TelephonyManager.NETWORK_TYPE_EVDO_0:
                         case TelephonyManager.NETWORK_TYPE_HSDPA:
@@ -134,7 +140,8 @@ public class NetworkUtils {
                         //如果是4g类型
                         case TelephonyManager.NETWORK_TYPE_LTE:
                             return NETWORK_4G;
-                        case TelephonyManager.NETWORK_TYPE_NR: //对应的20 只有依赖为android 10.0才有此属性
+                        //对应的20 只有依赖为android 10.0才有此属性
+                        case TelephonyManager.NETWORK_TYPE_NR:
                             return NETWORK_5G;
                         default:
                             //中国移动 联通 电信 三种3G制式
@@ -145,6 +152,7 @@ public class NetworkUtils {
                             }
                     }
                 }
+            }
         }
         return NETWORK_UNKNOWN;
     }
@@ -189,7 +197,9 @@ public class NetworkUtils {
             while (nis.hasMoreElements()) {
                 NetworkInterface ni = nis.nextElement();
                 // To prevent phone of xiaomi return "10.0.2.15"
-                if (!ni.isUp()) continue;
+                if (!ni.isUp()) {
+                    continue;
+                }
                 Enumeration<InetAddress> addresses = ni.getInetAddresses();
                 while (addresses.hasMoreElements()) {
                     InetAddress inetAddress = addresses.nextElement();
@@ -197,7 +207,9 @@ public class NetworkUtils {
                         String hostAddress = inetAddress.getHostAddress();
                         boolean isIPv4 = hostAddress.indexOf(':') < 0;
                         if (useIPv4) {
-                            if (isIPv4) return hostAddress;
+                            if (isIPv4) {
+                                return hostAddress;
+                            }
                         } else {
                             if (!isIPv4) {
                                 int index = hostAddress.indexOf('%');

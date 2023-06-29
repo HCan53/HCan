@@ -138,7 +138,9 @@ public class RoundProgressBar extends View {
     }
 
     public void cancelTimerCount() {
-        if (timerCount != null) timerCount.cancel();
+        if (timerCount != null) {
+            timerCount.cancel();
+        }
     }
 
     public void setFinshListener(OnFinshListener finshListener) {
@@ -173,8 +175,9 @@ public class RoundProgressBar extends View {
         public void onFinish() {
             if (barWeakReference.get() != null) {
                 barWeakReference.get().setProgress(100);
-                if (barWeakReference.get().finshListener != null)
+                if (barWeakReference.get().finshListener != null) {
                     barWeakReference.get().finshListener.finsh();
+                }
             }
         }
     }

@@ -147,7 +147,9 @@ public class JmTopBar extends RelativeLayout {
      * @param color 颜色值
      */
     public void setTitleColor(int color) {
-        if (color == -1) return;
+        if (color == -1) {
+            return;
+        }
         titleView.setTextColor(color);
     }
 

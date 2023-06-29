@@ -40,9 +40,13 @@ public class AppUtils {
      * @param packageName 包名
      */
     public static void launchApp(String packageName) {
-        if (TextUtils.isEmpty(packageName)) return;
+        if (TextUtils.isEmpty(packageName)) {
+            return;
+        }
         Intent intent = IntentUtils.getLaunchAppIntent(packageName);
-        if (intent == null) return;
+        if (intent == null) {
+            return;
+        }
         UtilsInit.getApp().startActivity(intent);
     }
 
@@ -65,7 +69,9 @@ public class AppUtils {
      * @param file The file.
      */
     public static void installApp(final File file) {
-        if (!FileUtils.isFileExists(file)) return;
+        if (!FileUtils.isFileExists(file)) {
+            return;
+        }
         UtilsInit.getApp().startActivity(IntentUtils.getInstallAppIntent(file, true));
     }
 }

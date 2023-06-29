@@ -105,7 +105,9 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
      * @param recyclerView
      */
     public static void releaseAllHolder(RecyclerView recyclerView) {
-        if (recyclerView == null) return;
+        if (recyclerView == null) {
+            return;
+        }
         for (int i = recyclerView.getChildCount() - 1; i >= 0; i--) {
             final View view = recyclerView.getChildAt(i);
             RecyclerView.ViewHolder viewHolder = recyclerView.getChildViewHolder(view);
@@ -117,7 +119,7 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
 
 
     public interface OnRecyclerViewItemClickListener<T> {
-//        void onItemClick(View view, int viewType, T data, int position);
+        //        void onItemClick(View view, int viewType, T data, int position);
         void onItemClick(T data, int position);
     }
 

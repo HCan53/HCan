@@ -70,7 +70,9 @@ public class ScreenShotUtil {
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void screenShot(Activity activity) {
-        if (mVirtualDisplay != null) return;
+        if (mVirtualDisplay != null) {
+            return;
+        }
         this.activity = activity;
         this.filePath = getFilePath();
         startShot();
@@ -84,7 +86,9 @@ public class ScreenShotUtil {
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void screenShot(Activity activity, String filePath) {
-        if (mVirtualDisplay != null) return;
+        if (mVirtualDisplay != null) {
+            return;
+        }
         this.activity = activity;
         this.filePath = filePath;
         startShot();
@@ -182,6 +186,7 @@ public class ScreenShotUtil {
                 }
             }
             TimerTask task = new TimerTask() {
+                @Override
                 @RequiresApi(api = Build.VERSION_CODES.O)
                 public void run() {
                     //execute the task
@@ -192,8 +197,9 @@ public class ScreenShotUtil {
             timer.schedule(task, 300);
         } else {
             isInit = false;
-            if (screenShotListener != null)
+            if (screenShotListener != null){
                 screenShotListener.screenShot(false, "");
+            }
         }
     }
 
@@ -208,12 +214,14 @@ public class ScreenShotUtil {
                     mImageReader.getSurface(), null, null);
             isInit = true;
             saveShot();
-            if (screenShotListener != null)
+            if (screenShotListener != null){
                 screenShotListener.screenShot(true, filePath);
+            }
         } else {
             isInit = false;
-            if (screenShotListener != null)
+            if (screenShotListener != null){
                 screenShotListener.screenShot(false, "");
+            }
         }
     }
 

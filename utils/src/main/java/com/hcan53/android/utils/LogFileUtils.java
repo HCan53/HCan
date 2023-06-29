@@ -11,8 +11,9 @@ public class LogFileUtils {
     private static LogFileUtils logFile;
 
     public static LogFileUtils getInstace() {
-        if (logFile == null)
+        if (logFile == null){
             logFile = new LogFileUtils();
+        }
         return logFile;
     }
 

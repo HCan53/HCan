@@ -20,6 +20,7 @@ public class PhoneUtils {
     private PhoneUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
+
     /**
      * 获取手机IMEI码
      * <p>需添加权限 {@code <uses-permission android:name="android.permission.READ_PHONE_STATE"/>}</p>
@@ -47,16 +48,18 @@ public class PhoneUtils {
      * <p>中国移动、如中国联通、中国电信</p>
      *
      * @return 移动网络运营商名称
-     *          <br>{@code "中国电信"}</br>
-     *          <br>{@code "中国移动"}</br>
-     *          <br>{@code "中国联通"}</br>
-     *          <br>{@code "未知"}</br>
+     * <br>{@code "中国电信"}</br>
+     * <br>{@code "中国移动"}</br>
+     * <br>{@code "中国联通"}</br>
+     * <br>{@code "未知"}</br>
      */
     public static String getSimOperatorByMnc() {
         TelephonyManager tm = (TelephonyManager) UtilsInit.getApp()
                 .getSystemService(Context.TELEPHONY_SERVICE);
         String operator = tm != null ? tm.getSimOperator() : null;
-        if (operator == null) return "未知";
+        if (operator == null) {
+            return "未知";
+        }
         switch (operator) {
             case "46000":
             case "46002":
@@ -78,12 +81,14 @@ public class PhoneUtils {
         TelephonyManager tm = (TelephonyManager) UtilsInit.getApp()
                 .getSystemService(Context.TELEPHONY_SERVICE);
         @SuppressLint({"MissingPermission", "HardwareIds"}) String imsi = tm != null ? tm.getSubscriberId() : null;
-        if (imsi == null) return "未知";
-        if(imsi.startsWith("46000") || imsi.startsWith("46002") || imsi.startsWith("46007")) {
+        if (imsi == null) {
+            return "未知";
+        }
+        if (imsi.startsWith("46000") || imsi.startsWith("46002") || imsi.startsWith("46007")) {
             return "中国移动";
-        } else if(imsi.startsWith("46001") || imsi.startsWith("46006")) {
+        } else if (imsi.startsWith("46001") || imsi.startsWith("46006")) {
             return "中国联通";
-        } else if(imsi.startsWith("46003") || imsi.startsWith("46005") || imsi.startsWith("46011")) {
+        } else if (imsi.startsWith("46003") || imsi.startsWith("46005") || imsi.startsWith("46011")) {
             return "中国电信";
         } else {
             return "未知";
@@ -95,10 +100,10 @@ public class PhoneUtils {
      * <p>中国移动、如中国联通、中国电信</p>
      *
      * @return 移动网络运营商名称
-     *          <br>{@code "1"：中国电信}</br>
-     *          <br>{@code "2"：中国移动}</br>
-     *          <br>{@code "3"：中国联通}</br>
-     *          <br>{@code "4"：未知}</br>
+     * <br>{@code "1"：中国电信}</br>
+     * <br>{@code "2"：中国移动}</br>
+     * <br>{@code "3"：中国联通}</br>
+     * <br>{@code "4"：未知}</br>
      */
     public static String getSimOperatorCode() {
         String operatorName = getSimOperatorByMnc();

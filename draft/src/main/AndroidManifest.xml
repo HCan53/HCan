@@ -5,6 +5,7 @@
     <application>
         <activity
             android:name=".ThanDraftActivity"
-            android:theme="@style/ThanDraft"></activity>
+            android:theme="@style/ThanDraft"
+            android:exported="true"></activity>
     </application>
 </manifest>

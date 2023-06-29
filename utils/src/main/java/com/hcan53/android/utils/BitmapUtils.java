@@ -32,7 +32,9 @@ public class BitmapUtils {
      * @return 字节数组
      */
     public static byte[] bitmap2Bytes(final Bitmap bitmap, final CompressFormat format) {
-        if (bitmap == null) return null;
+        if (bitmap == null) {
+            return null;
+        }
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(format, 100, baos);
         return baos.toByteArray();
@@ -57,7 +59,9 @@ public class BitmapUtils {
      * @return bitmap
      */
     public static Bitmap getBitmap(final String filePath, final int maxWidth, final int maxHeight) {
-        if (filePath == null || "".equals(filePath)) return null;
+        if (filePath == null || "".equals(filePath)) {
+            return null;
+        }
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(filePath, options);
@@ -75,7 +79,9 @@ public class BitmapUtils {
      * @return 采样大小
      */
     private static int calculateInSampleSize(final BitmapFactory.Options options, final int maxWidth, final int maxHeight) {
-        if (maxWidth == 0 || maxHeight == 0) return 1;
+        if (maxWidth == 0 || maxHeight == 0) {
+            return 1;
+        }
         int height = options.outHeight;
         int width = options.outWidth;
         int inSampleSize = 1;
@@ -132,20 +138,26 @@ public class BitmapUtils {
      * @return {@code true}: 成功<br>{@code false}: 失败
      */
     public static boolean save(final Bitmap src, final File file, final CompressFormat format, final boolean recycle) {
-        if (isEmptyBitmap(src) || !FileUtils.createOrExistsFile(file)) return false;
+        if (isEmptyBitmap(src) || !FileUtils.createOrExistsFile(file)) {
+            return false;
+        }
         OutputStream os = null;
         boolean ret = false;
         try {
             os = new BufferedOutputStream(new FileOutputStream(file));
             ret = src.compress(format, 100, os);
-            if (recycle && !src.isRecycled()) src.recycle();
+            if (recycle && !src.isRecycled()) {
+                src.recycle();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if(os != null) try {
-                os.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (os != null) {
+                try {
+                    os.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
             Uri uri = Uri.fromFile(file);

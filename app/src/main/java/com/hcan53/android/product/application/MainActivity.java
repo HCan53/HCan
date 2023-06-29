@@ -21,7 +21,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.HCan.android.draft.ThanDraftActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.hcan53.android.product.R;
 import com.hcan53.android.product.application.fragment.HomeFragment;
@@ -39,6 +38,7 @@ import com.hcan53.android.utils.StringUtils;
 import com.hcan53.android.utils.ToastUtils;
 import com.huawei.hms.hmsscankit.ScanUtil;
 import com.huawei.hms.ml.scan.HmsScan;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.Arrays;
 import java.util.List;
@@ -82,17 +82,19 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             public void onTabSelected(TabLayout.Tab tab) {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 for (TabBean tabBean : tabBeans) {
-                    if (tabBean.getFragment().isAdded())
+                    if (tabBean.getFragment().isAdded()) {
                         transaction.hide(tabBean.getFragment());
+                    }
                 }
                 int index = (int) tab.getTag();
                 TabBean tabBean = tabBeans.get(index);
                 LogFileUtils.getInstace().writeLog(tabBean.getTabName());
                 if (tabBean.getFragment() != null) {
-                    if (!tabBean.getFragment().isAdded())
+                    if (!tabBean.getFragment().isAdded()) {
                         transaction.add(R.id.fl_main, tabBean.getFragment(), index + "");
-                    else
+                    } else {
                         transaction.show(tabBean.getFragment());
+                    }
                     transaction.commit();
                 }
             }

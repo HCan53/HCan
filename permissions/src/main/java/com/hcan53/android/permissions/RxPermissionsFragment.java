@@ -39,11 +39,14 @@ public class RxPermissionsFragment extends Fragment {
         requestPermissions(permissions, PERMISSIONS_REQUEST_CODE);
     }
 
+    @Override
     @TargetApi(Build.VERSION_CODES.M)
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode != PERMISSIONS_REQUEST_CODE) return;
+        if (requestCode != PERMISSIONS_REQUEST_CODE) {
+            return;
+        }
 
         boolean[] shouldShowRequestPermissionRationale = new boolean[permissions.length];
 

@@ -27,8 +27,9 @@ public class MainPresenter extends BasePresenter<MainContract.View, ActivityEven
         tabBeans.add(tabBean2);
         tabBeans.add(tabBean3);
         tabBeans.add(tabBean4);
-        if (getView() != null)
+        if (getView() != null){
             getView().showTabs(tabBeans);
+        }
     }
 
 

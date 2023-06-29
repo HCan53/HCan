@@ -85,8 +85,9 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
 
     @Override
     public void toastMessage(String message) {
-        if (!StringUtils.isSpace(message))
+        if (!StringUtils.isSpace(message)){
             ToastUtils.showShort(message);
+        }
     }
 
     @Override

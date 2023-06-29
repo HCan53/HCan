@@ -46,7 +46,7 @@ public class AndroidSimulator {
      *返回:true 为模拟器
      */
     public static Boolean notHasLightSensorManager(Context context) {
-        SensorManager sensorManager = (SensorManager) context.getSystemService(context.SENSOR_SERVICE);
+        SensorManager sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         Sensor sensor8 = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT); //光
         if (null == sensor8) {
             return true;

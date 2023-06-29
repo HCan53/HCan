@@ -67,8 +67,9 @@ public class TimeUtils {
         long now = System.currentTimeMillis();
         long span = now - time;
 
-        if (span < 0)
+        if (span < 0){
             return String.format("%tc", time);
+        }
         if (span < HOUR) {
             return String.format(Locale.getDefault(), "%d分钟前", span / MIN);
         } else if (span < DAY) {

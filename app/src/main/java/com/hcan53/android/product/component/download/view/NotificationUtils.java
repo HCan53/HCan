@@ -89,8 +89,9 @@ public class NotificationUtils extends ContextWrapper {
         //通知的时间
         builder.setWhen(System.currentTimeMillis());
         //设置点击信息后的跳转（意图）
-        if (intent != null)
+        if (intent != null) {
             builder.setContentIntent(intent);
+        }
         builder.setOngoing(true);
         return builder;
     }
@@ -106,7 +107,9 @@ public class NotificationUtils extends ContextWrapper {
     }
 
     public void setProgress(int notity, int progress) {
-        if (builder == null) return;
+        if (builder == null) {
+            return;
+        }
         if (progress >= 0 && progress < 100) {
             //一种是有进度刻度的（false）,一种是循环流动的（true）
             //设置为false，表示刻度，设置为true，表示流动

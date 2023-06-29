@@ -62,7 +62,7 @@ public class IntentUtils {
      * <p>api大于等于25，需要权限
      * {@code <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />}</p>
      *
-     * @param filePath 安装文件路径.
+     * @param filePath  安装文件路径.
      * @param isNewTask true to add flag of new task, false otherwise.
      * @return 安装app intent
      */
@@ -75,12 +75,14 @@ public class IntentUtils {
      * <p>api大于等于25，需要权限
      * {@code <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />}</p>
      *
-     * @param file 安装文件.
+     * @param file      安装文件.
      * @param isNewTask true to add flag of new task, false otherwise.
      * @return 安装app intent
      */
     public static Intent getInstallAppIntent(final File file, final boolean isNewTask) {
-        if (file == null) return null;
+        if (file == null) {
+            return null;
+        }
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Uri data;
@@ -153,8 +155,8 @@ public class IntentUtils {
     /**
      * 获取打开相机拍照的意图（兼容7.0）
      * <p>需添加权限 :
-     *     <br>{@code <uses-permission android:name="android.permission.CAMERA"/>}</br>
-     *     <br>{@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}</br>
+     * <br>{@code <uses-permission android:name="android.permission.CAMERA"/>}</br>
+     * <br>{@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}</br>
      * </p>
      *
      * @param file 拍照保存图片的文件

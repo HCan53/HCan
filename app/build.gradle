@@ -9,11 +9,11 @@ android {
             storePassword 'HCan532577'
         }
     }
-    compileSdkVersion 31
+    compileSdk 30
     defaultConfig {
         applicationId "com.hcan53.android.product"
         minSdkVersion 17
-        targetSdkVersion 31
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -49,6 +49,7 @@ android {
     }
 
     useLibrary 'org.apache.http.legacy'
+    buildToolsVersion '30.0.3'
 }
 
 dependencies {
@@ -59,6 +60,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'com.huawei.hms:scanplus:1.1.1.301'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.tencent.bugly:crashreport:latest.release' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如4.0.3
     implementation project(path: ':utils')
     implementation project(path: ':http')
     implementation project(path: ':views')

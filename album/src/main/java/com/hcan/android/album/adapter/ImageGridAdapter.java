@@ -43,7 +43,7 @@ public class ImageGridAdapter extends BaseAdapter {
         this.showCamera = showCamera;
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Point size = new Point();
-        wm .getDefaultDisplay().getSize(size);
+        wm.getDefaultDisplay().getSize(size);
         int width = size.x;
         mGridWidth = width / column;
     }
@@ -58,7 +58,9 @@ public class ImageGridAdapter extends BaseAdapter {
     }
 
     public void setShowCamera(boolean b) {
-        if (showCamera == b) return;
+        if (showCamera == b) {
+            return;
+        }
 
         showCamera = b;
         notifyDataSetChanged();
@@ -199,7 +201,9 @@ public class ImageGridAdapter extends BaseAdapter {
         }
 
         void bindData(final Image data) {
-            if (data == null) return;
+            if (data == null) {
+                return;
+            }
             // 处理单选和多选状态
             if (showSelectIndicator) {
                 indicator.setVisibility(View.VISIBLE);

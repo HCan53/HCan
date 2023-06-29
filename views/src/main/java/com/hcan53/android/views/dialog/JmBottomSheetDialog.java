@@ -208,7 +208,9 @@ public class JmBottomSheetDialog extends Dialog {
             BottomSheetListAdapter adapter = new BottomSheetListAdapter(Arrays.asList(mItems), StringUtils.isEmpty(mTitle));
             listRv.setAdapter(adapter);
             adapter.setOnItemClickListener((data, position) -> {
-                if(mListener != null) mListener.onItemClick((String) data, position);
+                if(mListener != null) {
+                    mListener.onItemClick((String) data, position);
+                }
                 dialog.dismiss();
             });
             return dialog;

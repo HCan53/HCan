@@ -131,7 +131,9 @@ public final class JLog {
     }
 
     public static void log(final int type, final String tag, final Object... contents) {
-        if (!mLogSwitch) return;
+        if (!mLogSwitch) {
+            return;
+        }
         int type_low = type & 0x0f, type_high = type & 0xf0;
 //        if (type_low < CONFIG.mConsoleFilter) return;
         final TagHead tagHead = processTagAndHead(tag);
@@ -202,7 +204,9 @@ public final class JLog {
 
     private static String getFileName(final StackTraceElement targetElement) {
         String fileName = targetElement.getFileName();
-        if (fileName != null) return fileName;
+        if (fileName != null) {
+            return fileName;
+        }
         // If name of file is null, should add
         // "-keepattributes SourceFile,LineNumberTable" in proguard file.
         String className = targetElement.getClassName();
@@ -222,7 +226,9 @@ public final class JLog {
         if (contents != null) {
             if (contents.length == 1) {
                 Object object = contents[0];
-                if (object != null) body = object.toString();
+                if (object != null) {
+                    body = object.toString();
+                }
                 if (type == JSON) {
                     body = formatJson(body);
                 }
@@ -304,7 +310,9 @@ public final class JLog {
             for (String aHead : head) {
                 Log.println(type, tag, mLogBorderSwitch ? LEFT_BORDER + aHead : aHead);
             }
-            if (mLogBorderSwitch) Log.println(type, tag, MIDDLE_BORDER);
+            if (mLogBorderSwitch) {
+                Log.println(type, tag, MIDDLE_BORDER);
+            }
         }
     }
 
@@ -369,7 +377,9 @@ public final class JLog {
     }
 
     private static boolean isSpace(final String s) {
-        if (s == null) return true;
+        if (s == null) {
+            return true;
+        }
         for (int i = 0, len = s.length(); i < len; ++i) {
             if (!Character.isWhitespace(s.charAt(i))) {
                 return false;

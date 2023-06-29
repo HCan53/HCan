@@ -11,11 +11,14 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
 
 public abstract class BaseFragment<P extends BasePresenter> extends RxFragment implements IView {
     protected P presenter;
+
     @Nullable
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (inflater == null) return null;
-        if(getContentViewId() != 0) {
+        if (inflater == null) {
+            return null;
+        }
+        if (getContentViewId() != 0) {
             return inflater.inflate(getContentViewId(), container, false);
         }
         return super.onCreateView(inflater, container, savedInstanceState);
@@ -43,6 +46,8 @@ public abstract class BaseFragment<P extends BasePresenter> extends RxFragment i
     }
 
     protected abstract int getContentViewId();
+
     protected abstract void initView(View view);
+
     protected abstract void initData();
 }

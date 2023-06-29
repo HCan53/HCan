@@ -82,10 +82,16 @@ public class FileUtils {
      * @return {@code true}: 存在或创建成功<br>{@code false}: 不存在或创建失败
      */
     public static boolean createOrExistsFile(final File file) {
-        if (file == null) return false;
+        if (file == null) {
+            return false;
+        }
         // 如果存在，是文件则返回true，是目录则返回false
-        if (file.exists()) return file.isFile();
-        if (!createOrExistsDir(file.getParentFile())) return false;
+        if (file.exists()) {
+            return file.isFile();
+        }
+        if (!createOrExistsDir(file.getParentFile())) {
+            return false;
+        }
         try {
             return file.createNewFile();
         } catch (IOException e) {
@@ -111,7 +117,9 @@ public class FileUtils {
      * @return 目录长度
      */
     public static long getDirLength(final File dir) {
-        if (!isFileExists(dir) || !dir.isDirectory()) return -1;
+        if (!isFileExists(dir) || !dir.isDirectory()) {
+            return -1;
+        }
         long len = 0;
         File[] files = dir.listFiles();
         if (files != null && files.length != 0) {
@@ -143,7 +151,9 @@ public class FileUtils {
      * @return 文件长度
      */
     public static long getFileLength(final File file) {
-        if (!isFileExists(file) || !file.isFile()) return -1;
+        if (!isFileExists(file) || !file.isFile()) {
+            return -1;
+        }
         return file.length();
     }
 
@@ -161,8 +171,8 @@ public class FileUtils {
     /**
      * Copy the directory.
      *
-     * @param srcDir   The source directory.
-     * @param destDir  The destination directory.
+     * @param srcDir  The source directory.
+     * @param destDir The destination directory.
      * @return {@code true}: success<br>{@code false}: fail
      */
     public static boolean copyDir(final File srcDir,
@@ -172,12 +182,18 @@ public class FileUtils {
 
     private static boolean copyOrMoveDir(final File srcDir,
                                          final File destDir) {
-        if (srcDir == null || destDir == null) return false;
+        if (srcDir == null || destDir == null) {
+            return false;
+        }
         // destDir's path locate in srcDir's path then return false
         String srcPath = srcDir.getPath() + File.separator;
         String destPath = destDir.getPath() + File.separator;
-        if (destPath.contains(srcPath)) return false;
-        if (!srcDir.exists() || !srcDir.isDirectory()) return false;
+        if (destPath.contains(srcPath)) {
+            return false;
+        }
+        if (!srcDir.exists() || !srcDir.isDirectory()) {
+            return false;
+        }
 //        if (destDir.exists()) {
 //            if (listener == null || listener.onReplace()) {// require delete the old directory
 //                if (!deleteAllInDir(destDir)) {// unsuccessfully delete then return false
@@ -187,14 +203,20 @@ public class FileUtils {
 //                return true;
 //            }
 //        }
-        if (!createOrExistsDir(destDir)) return false;
+        if (!createOrExistsDir(destDir)) {
+            return false;
+        }
         File[] files = srcDir.listFiles();
         for (File file : files) {
             File oneDestFile = new File(destPath + file.getName());
             if (file.isFile()) {
-                if (!copyOrMoveFile(file, oneDestFile)) return false;
+                if (!copyOrMoveFile(file, oneDestFile)) {
+                    return false;
+                }
             } else if (file.isDirectory()) {
-                if (!copyOrMoveDir(file, oneDestFile)) return false;
+                if (!copyOrMoveDir(file, oneDestFile)) {
+                    return false;
+                }
             }
         }
         return true;
@@ -230,13 +252,21 @@ public class FileUtils {
      * @return {@code true}: 复制或移动成功<br>{@code false}: 复制或移动失败
      */
     private static boolean copyOrMoveFile(final File srcFile, final File destFile) {
-        if (srcFile == null || destFile == null) return false;
+        if (srcFile == null || destFile == null) {
+            return false;
+        }
         // 源文件不存在或者不是文件则返回false
-        if (!srcFile.exists() || !srcFile.isFile()) return false;
+        if (!srcFile.exists() || !srcFile.isFile()) {
+            return false;
+        }
         // 目标文件存在且是文件则返回false
-        if (destFile.exists() && destFile.isFile()) return false;
+        if (destFile.exists() && destFile.isFile()) {
+            return false;
+        }
         // 目标目录不存在返回false
-        if (!createOrExistsDir(destFile.getParentFile())) return false;
+        if (!createOrExistsDir(destFile.getParentFile())) {
+            return false;
+        }
         try {
             return writeFileFromIS(destFile, new FileInputStream(srcFile));
         } catch (FileNotFoundException e) {
@@ -262,17 +292,29 @@ public class FileUtils {
      * @return {@code true}: 删除成功<br>{@code false}: 删除失败
      */
     public static boolean deleteDir(final File dir) {
-        if (dir == null) return false;
-        if (!dir.exists()) return true;// 目录不存在返回true
-        if (!dir.isDirectory()) return false;// 不是目录返回false
+        if (dir == null) {
+            return false;
+        }
+        if (!dir.exists()) {
+            // 目录不存在返回true
+            return true;
+        }
+        if (!dir.isDirectory()) {
+            // 不是目录返回false
+            return false;
+        }
         // 现在文件存在且是文件夹
         File[] files = dir.listFiles();
         if (files != null && files.length != 0) {
             for (File file : files) {
                 if (file.isFile()) {
-                    if (!file.delete()) return false;
+                    if (!file.delete()) {
+                        return false;
+                    }
                 } else if (file.isDirectory()) {
-                    if (!deleteDir(file)) return false;
+                    if (!deleteDir(file)) {
+                        return false;
+                    }
                 }
             }
         }
@@ -302,13 +344,15 @@ public class FileUtils {
     /**
      * 将输入流写入文件
      *
-     * @param file   文件
-     * @param is     输入流
+     * @param file 文件
+     * @param is   输入流
      * @return {@code true}: 写入成功<br>{@code false}: 写入失败
      */
     public static boolean writeFileFromIS(final File file, final InputStream is) {
         int sBufferSize = 8192;
-        if (is == null) return false;
+        if (is == null) {
+            return false;
+        }
         OutputStream os = null;
         try {
             os = new BufferedOutputStream(new FileOutputStream(file));
@@ -323,7 +367,9 @@ public class FileUtils {
             return false;
         } finally {
             try {
-                if(os != null) os.close();
+                if (os != null) {
+                    os.close();
+                }
                 is.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -333,12 +379,15 @@ public class FileUtils {
 
     /**
      * 根据Uri获取文件路径
+     *
      * @param activity 当前上下文
-     * @param uri uri
+     * @param uri      uri
      * @return 文件对象
      */
     public static String getPathFromUri(Activity activity, Uri uri) {
-        if (uri == null) return null;
+        if (uri == null) {
+            return null;
+        }
         if (Build.VERSION.SDK_INT >= 19) {
             return getPathFromUriOnKITKAT(activity, uri);
         } else {
@@ -348,18 +397,19 @@ public class FileUtils {
 
     /**
      * 根据Uri获取File
+     *
      * @param activity 当前上下文
-     * @param uri uri
+     * @param uri      uri
      * @return 文件对象
      */
     public static File getFileFromUri(Activity activity, Uri uri) {
         return getFileByPath(getPathFromUri(activity, uri));
     }
 
-    public static String getPathFromUriUnderKITKAT(Activity activity, Uri uri){
+    public static String getPathFromUriUnderKITKAT(Activity activity, Uri uri) {
         String[] proj = {MediaStore.Images.Media.DATA};
         @SuppressWarnings("deprecation")
-        Cursor actualimagecursor = activity.managedQuery(uri, proj,null, null, null);
+        Cursor actualimagecursor = activity.managedQuery(uri, proj, null, null, null);
         int actual_image_column_index = actualimagecursor
                 .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         actualimagecursor.moveToFirst();
@@ -410,7 +460,7 @@ public class FileUtils {
                 }
 
                 final String selection = "_id=?";
-                final String[] selectionArgs = new String[] { split[1] };
+                final String[] selectionArgs = new String[]{split[1]};
 
                 return getDataColumn(context, contentUri, selection, selectionArgs);
             }
@@ -431,14 +481,10 @@ public class FileUtils {
      * Get the value of the data column for this Uri. This is useful for
      * MediaStore Uris, and other file-based ContentProviders.
      *
-     * @param context
-     *            The context.
-     * @param uri
-     *            The Uri to query.
-     * @param selection
-     *            (Optional) Filter used in the query.
-     * @param selectionArgs
-     *            (Optional) Selection arguments used in the query.
+     * @param context       The context.
+     * @param uri           The Uri to query.
+     * @param selection     (Optional) Filter used in the query.
+     * @param selectionArgs (Optional) Selection arguments used in the query.
      * @return The value of the _data column, which is typically a file path.
      */
     private static String getDataColumn(Context context, Uri uri, String selection,
@@ -446,7 +492,7 @@ public class FileUtils {
 
         Cursor cursor = null;
         final String column = "_data";
-        final String[] projection = { column };
+        final String[] projection = {column};
 
         try {
             cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
@@ -456,15 +502,15 @@ public class FileUtils {
                 return cursor.getString(column_index);
             }
         } finally {
-            if (cursor != null)
+            if (cursor != null) {
                 cursor.close();
+            }
         }
         return null;
     }
 
     /**
-     * @param uri
-     *            The Uri to check.
+     * @param uri The Uri to check.
      * @return Whether the Uri authority is ExternalStorageProvider.
      */
     private static boolean isExternalStorageDocument(Uri uri) {
@@ -472,8 +518,7 @@ public class FileUtils {
     }
 
     /**
-     * @param uri
-     *            The Uri to check.
+     * @param uri The Uri to check.
      * @return Whether the Uri authority is DownloadsProvider.
      */
     private static boolean isDownloadsDocument(Uri uri) {
@@ -481,8 +526,7 @@ public class FileUtils {
     }
 
     /**
-     * @param uri
-     *            The Uri to check.
+     * @param uri The Uri to check.
      * @return Whether the Uri authority is MediaProvider.
      */
     private static boolean isMediaDocument(Uri uri) {
@@ -491,6 +535,7 @@ public class FileUtils {
 
     /**
      * 利用反射获取外置sd卡路径
+     *
      * @param mContext 当前上下文
      * @return sd卡路径
      */

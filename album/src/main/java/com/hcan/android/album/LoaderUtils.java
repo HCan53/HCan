@@ -126,8 +126,12 @@ public class LoaderUtils {
         @SuppressLint("CheckResult")
         private RequestOptions getRequestOptions() {
             RequestOptions ro = new RequestOptions();
-            if (placeholderResId != 0) ro.placeholder(placeholderResId);
-            if (errorResId != 0) ro.error(errorResId);
+            if (placeholderResId != 0) {
+                ro.placeholder(placeholderResId);
+            }
+            if (errorResId != 0) {
+                ro.error(errorResId);
+            }
             if (isCircle) {
                 ro.circleCrop();
             } else if (isCenterCrop) {
